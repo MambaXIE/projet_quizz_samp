@@ -1,5 +1,11 @@
 package ufr.m1.quizz;
 
+/*
+ * Copyright (c) 2015. Petetin Cédric.
+ * Master 1 - SAMP
+ * Quizz/Questionnaires avec Android
+ */
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
