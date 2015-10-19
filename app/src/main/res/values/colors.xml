@@ -5,8 +5,13 @@
   ~ Quizz/Questionnaires avec Android
   -->
 
-<resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+<resources><!-- Couleurs de : http://www.google.com/design/spec/style/color.html#color-color-palette --><!-- Light Blue -->
+    <color name="colorPrimary">#00b0ff</color> <!-- A400 -->
+    <color name="colorPrimaryDark">#0091ea</color> <!-- A700 -->
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#80d8ff</color> <!-- A100 -->
+    <color name="colorEditText">#b3e5fc</color> <!-- 100 -->
+    <color name="colorTextView">#212121</color> <!-- grey : 900 -->
 </resources>
