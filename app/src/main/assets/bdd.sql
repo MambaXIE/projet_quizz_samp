@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS Sujet (
   `id` INTEGER NOT NULL,
   `nom` TEXT NOT NULL,
-  `questionnaire` INTEGER NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE IF NOT EXISTS Question(
   `id` INTEGER NOT NULL,
   `question` TEXT NOT NULL,
-  `BonneReponse` INTEGER NULL,
+  `bonneReponse` INTEGER NULL,
+  `sujet` INTEGER NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE IF NOT EXISTS Reponse(
