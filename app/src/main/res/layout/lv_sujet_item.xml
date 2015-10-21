@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015. Petetin Cédric.
+  ~ Master 1 - SAMP
+  ~ Quizz/Questionnaires avec Android
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_item_tv_sujet"
+        android:textSize="10pt"
+        android:textColor="@color/colorTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="nfiuebrfeffrfaare"
+        android:padding="15dp"
+        android:paddingLeft="30dp"/>
+
+</RelativeLayout>
