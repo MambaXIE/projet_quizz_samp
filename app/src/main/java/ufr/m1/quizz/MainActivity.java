@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        this.setTitle("categories");
+        this.setTitle("Categories");
 
         listeSujets = new ArrayList<>();
         myDb = new Database(this);
