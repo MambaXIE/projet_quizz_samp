@@ -56,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, GestionActivity.class);
-                startActivity(i);
+
             }
         });
     }
@@ -78,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_gestion) {
+            Intent i = new Intent(MainActivity.this, GestionActivity.class);
+            startActivity(i);
             return true;
         }
 

@@ -23,6 +23,11 @@
             android:label="@string/title_activity_gestion"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".AjoutActivity"
+            android:label="@string/title_activity_ajout"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>
