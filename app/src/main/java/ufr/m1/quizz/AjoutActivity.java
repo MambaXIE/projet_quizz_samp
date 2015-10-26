@@ -1,3 +1,4 @@
+
 /*
  *
  *  * Copyright (c) 2015. Petetin Cédric.
@@ -20,12 +21,14 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.List;
 
-import ufr.m1.quizz.Test.OneFragment;
+import ufr.m1.quizz.GestionFragment.SujetFragment;
+import ufr.m1.quizz.SQLite.Database;
 
 public class AjoutActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Database myDb;
 
 
     @Override
@@ -48,9 +51,9 @@ public class AjoutActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "Ajouter Catégorie");
-        adapter.addFragment(new OneFragment(), "Ajouter question");
-        adapter.addFragment(new OneFragment(), "importé");
+        adapter.addFragment(new SujetFragment(), "Catégories");
+        adapter.addFragment(new SujetFragment(), "Questions");
+        adapter.addFragment(new SujetFragment(), "importé");
         viewPager.setAdapter(adapter);
     }
 

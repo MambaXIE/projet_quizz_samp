@@ -26,7 +26,8 @@
         <activity
             android:name=".AjoutActivity"
             android:label="@string/title_activity_ajout"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity">
         </activity>
     </application>
 
