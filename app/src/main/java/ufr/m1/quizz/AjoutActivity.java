@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import ufr.m1.quizz.GestionFragment.QuestionFragment;
 import ufr.m1.quizz.GestionFragment.SujetFragment;
 import ufr.m1.quizz.SQLite.Database;
 
@@ -52,7 +53,7 @@ public class AjoutActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new SujetFragment(), "Catégories");
-        adapter.addFragment(new SujetFragment(), "Questions");
+        adapter.addFragment(new QuestionFragment(), "Questions");
         adapter.addFragment(new SujetFragment(), "importé");
         viewPager.setAdapter(adapter);
     }
