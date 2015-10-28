@@ -15,10 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ufr.m1.quizz.Adapter.ListeSujetAdapter;
+import ufr.m1.quizz.ListViewSwipeGesture.ListViewSwipeGesture;
 import ufr.m1.quizz.R;
 import ufr.m1.quizz.SQLite.Database;
 import ufr.m1.quizz.Stockage.SujetItem;
@@ -59,8 +61,52 @@ public class SujetFragment extends Fragment {
         adapter = new ListeSujetAdapter(arraySujets,getContext());
         listeSujet.setAdapter(adapter);
 
+        final ListViewSwipeGesture touchListener = new ListViewSwipeGesture(
+                listeSujet, swipeListener, getActivity());
+        touchListener.SwipeType	=	ListViewSwipeGesture.Single;    //Set two options at background of list item
+
+        listeSujet.setOnTouchListener(touchListener);
+
         return view;
     }
+
+    ListViewSwipeGesture.TouchCallbacks swipeListener = new ListViewSwipeGesture.TouchCallbacks() {
+
+        @Override
+        public void FullSwipeListView(int position) {
+            // TODO Auto-generated method stub
+            Toast.makeText(getContext(), "Action_2", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void HalfSwipeListView(int position) {
+            // TODO Auto-generated method stub
+            Toast.makeText(getContext(),"Action_1", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void LoadDataForScroll(int count) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+            // TODO Auto-generated method stub
+            Toast.makeText(getContext(),"Delete", Toast.LENGTH_SHORT).show();
+            for(int i:reverseSortedPositions){
+                arraySujets.remove(i);
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void OnClickListView(int position) {
+            // TODO Auto-generated method stub
+            //startActivity(new Intent(getContext(),MainActivity.class));
+        }
+
+    };
 
 }
 

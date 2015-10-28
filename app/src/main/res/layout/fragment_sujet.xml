@@ -12,10 +12,11 @@
     android:layout_height="match_parent"
     tools:context="info.androidhive.materialtabs.fragments.OneFragment">
 
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
+        android:background="@color/colorAccent"
         android:text="@string/btn_ajout_sujet"
         android:layout_margin="@dimen/fab_margin"
         android:id="@+id/btn_ajout_sujet"/>
