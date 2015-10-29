@@ -14,4 +14,6 @@
     <color name="colorAccent">#80d8ff</color> <!-- A100 -->
     <color name="colorEditText">#b3e5fc</color> <!-- 100 -->
     <color name="colorTextView">#212121</color> <!-- grey : 900 -->
+    <color name="delete">#c62828</color>
+    <color name="edit">#42a5f5</color>
 </resources>

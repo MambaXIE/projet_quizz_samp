@@ -11,6 +11,10 @@
     <string name="title_activity_ajout">AjoutActivity</string>
 
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="editer">Editer</string>
+    <string name="supprimer_color">#c62828</string>
+    <string name="editer_color">#42a5f5</string>
 
     <string name="basic_action_1">Action_1</string>
     <string name="basic_action_2">Action_2</string>

@@ -26,6 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_ajout_sujet"
         android:layout_margin="@dimen/fab_margin"
-        android:id="@+id/lv_liste_sujet"/>
+        android:id="@+id/lv_liste_sujet"
+        android:animateLayoutChanges="true"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:fadeScrollbars="true"
+        android:smoothScrollbar="true" />
 
 </RelativeLayout>

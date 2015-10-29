@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="visible" >
+        android:visibility="visible"
+        android:background="#EAEAEA">
 
 
     <TextView
@@ -26,7 +27,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="nfiuebrfeffrfaare"
         android:padding="15dp"
         android:paddingLeft="30dp"/>
 

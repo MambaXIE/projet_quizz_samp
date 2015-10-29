@@ -61,9 +61,19 @@ public class SujetFragment extends Fragment {
         adapter = new ListeSujetAdapter(arraySujets,getContext());
         listeSujet.setAdapter(adapter);
 
-        final ListViewSwipeGesture touchListener = new ListViewSwipeGesture(
-                listeSujet, swipeListener, getActivity());
-        touchListener.SwipeType	=	ListViewSwipeGesture.Single;    //Set two options at background of list item
+        ListViewSwipeGesture touchListener = new ListViewSwipeGesture(listeSujet, swipeListener, getActivity());
+        touchListener.SwipeType	=	ListViewSwipeGesture.Double;    //Set two options at background of list item
+
+        //iniialisation des bouton en background de listView
+        //Premier bouton
+        touchListener.HalfColor = getResources().getString(R.string.supprimer_color);
+        touchListener.HalfText = getResources().getString(R.string.supprimer);
+        touchListener.HalfDrawable = getResources().getDrawable(R.drawable.ic_trash);
+
+        //deuxieme bouton
+        touchListener.FullColor = getResources().getString(R.string.editer_color);
+        touchListener.FullText = getResources().getString(R.string.editer);
+        touchListener.FullDrawable = getResources().getDrawable(R.drawable.ic_edit);
 
         listeSujet.setOnTouchListener(touchListener);
 
