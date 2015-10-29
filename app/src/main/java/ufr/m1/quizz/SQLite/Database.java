@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import ufr.m1.quizz.Stockage.SujetItem;
+import ufr.m1.quizz.parser.AddQuestionnaire;
 
 
 public class Database extends SQLiteOpenHelper {
@@ -43,6 +44,7 @@ public class Database extends SQLiteOpenHelper {
         Log.i(TAG, "onCreate bbbbb");
         this.db = database;
         executeSQLScript("bdd.sql");
+        new AddQuestionnaire(context).execute("http://raphaello.univ-fcomte.fr/m1/Quizzs.xml");
     }
 
 
