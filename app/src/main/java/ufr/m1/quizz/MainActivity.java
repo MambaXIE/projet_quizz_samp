@@ -4,6 +4,7 @@ package ufr.m1.quizz;
  * Copyright (c) 2015. Petetin Cédric.
  * Master 1 - SAMP
  * Quizz/Questionnaires avec Android
+ * fiusdiofnzoid
  */
 
 import android.content.Intent;
