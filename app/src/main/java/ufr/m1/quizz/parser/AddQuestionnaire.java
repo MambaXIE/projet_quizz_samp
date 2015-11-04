@@ -15,6 +15,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -55,7 +57,7 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
             Document doc = db.parse(new InputSource(url.openStream()));
             doc.getDocumentElement().normalize();
 
-            nodelist = doc.getElementsByTagName("item");
+            nodelist = doc.getElementsByTagName("Quizz");
 
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
@@ -64,10 +66,44 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
         return null;
     }
 
+
+
     @Override
     protected void onPostExecute(Long aLong) {
         super.onPostExecute(aLong);
         Log.i(TAG, "onPostExecute");
+        for (int temp = 0; temp < nodelist.getLength(); temp++) {
+            Node nNode = nodelist.item(temp);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+
+                //System.out.println(getNode("Quizz", eElement));
+                //System.out.println(eElement.getAttribute("type"));
+                System.out.println(getNode("Question", eElement));
+            }
+        }
         pdialog.dismiss();
+    }
+
+    private static String getNode(String sTag, Element eElement) {
+        NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
+        Node nValue = (Node) nlList.item(0);
+        return nValue.getNodeValue();
+    }
+
+    private final String getTextNodeValue(Node node) {
+        Node child;
+        if (node != null) {
+            if (node.hasChildNodes()) {
+                child = node.getFirstChild();
+                while(child != null) {
+                    if (child.getNodeType() == Node.TEXT_NODE) {
+                        return child.getNodeValue();
+                    }
+                    child = child.getNextSibling();
+                }
+            }
+        }
+        return "";
     }
 }
