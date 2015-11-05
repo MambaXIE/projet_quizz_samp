@@ -15,7 +15,3 @@ CREATE TABLE IF NOT EXISTS Reponse(
   `reponse` TEXT NOT NULL,
   `question` INTEGER NULL,
   PRIMARY KEY (`id`));
-
-
-  INSERT INTO Sujet (nom) VALUES ("Animaux");
-  INSERT INTO Sujet (nom) VALUES ("Pays");

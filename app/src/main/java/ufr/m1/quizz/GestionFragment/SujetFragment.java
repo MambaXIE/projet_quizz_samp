@@ -88,10 +88,14 @@ public class SujetFragment extends Fragment {
             Toast.makeText(getContext(), "Action_2", Toast.LENGTH_SHORT).show();
         }
 
+        //appeler pour delete un sujet
         @Override
         public void HalfSwipeListView(int position) {
-            // TODO Auto-generated method stub
-            Toast.makeText(getContext(),"Action_1", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Delete", Toast.LENGTH_SHORT).show();
+            myDb.deleteCategorie(arraySujets.get(position).getId());
+            arraySujets.remove(position);
+            adapter.notifyDataSetChanged();
+
         }
 
         @Override

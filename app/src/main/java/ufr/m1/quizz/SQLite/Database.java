@@ -6,6 +6,7 @@ package ufr.m1.quizz.SQLite;
  * Quizz/Questionnaires avec Android
  */
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
@@ -37,6 +38,8 @@ public class Database extends SQLiteOpenHelper {
         // Store the context for later use
         this.context = context;
         Log.i(TAG, "Constructor");
+        //TODO
+        //new AddQuestionnaire(context, this).execute("http://raphaello.univ-fcomte.fr/m1/Quizzs.xml");
     }
 
     @Override
@@ -44,7 +47,7 @@ public class Database extends SQLiteOpenHelper {
         Log.i(TAG, "onCreate bbbbb");
         this.db = database;
         executeSQLScript("bdd.sql");
-        new AddQuestionnaire(context).execute("http://raphaello.univ-fcomte.fr/m1/Quizzs.xml");
+        new AddQuestionnaire(context, this).execute("http://raphaello.univ-fcomte.fr/m1/Quizzs.xml");
     }
 
 
@@ -98,5 +101,26 @@ public class Database extends SQLiteOpenHelper {
             }
             c.close();
         }
+    }
+
+    public int insertCategorie(String type) {
+        try {
+            ContentValues values = new ContentValues();
+            values.put("nom", type);
+            int id = (int) db.insert("Sujet", null, values);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        //db.rawQuery("INSERT INTO Sujet (nom) VALUES ('"+type+"')",null);
+        /*if (id >1){
+            Log.i(TAG, "Insertion de Sujet réussi");
+        }else{
+            Log.e(TAG, "erreur lors de l'insertion d'une question");
+        }*/
+        return 1;
+    }
+
+    public void deleteCategorie(int id) {
+        db.delete("Sujet", "id  =?", new String[]{""+id});
     }
 }

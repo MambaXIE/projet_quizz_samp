@@ -25,15 +25,20 @@ import java.net.URL;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import ufr.m1.quizz.SQLite.Database;
+
 public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
 
     private Context context;
     private static final String TAG = "AddQuestionnaire";
     NodeList nodelist;
     ProgressDialog pdialog;
+    Document doc;
+    Database db;
 
-    public AddQuestionnaire(Context context) {
+    public AddQuestionnaire(Context context, Database db) {
         this.context = context;
+        this.db = db;
     }
 
     @Override
@@ -54,10 +59,9 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             // Telechargement du fichier
-            Document doc = db.parse(new InputSource(url.openStream()));
+            doc = db.parse(new InputSource(url.openStream()));
             doc.getDocumentElement().normalize();
 
-            nodelist = doc.getElementsByTagName("Quizz");
 
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
@@ -72,35 +76,33 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
     protected void onPostExecute(Long aLong) {
         super.onPostExecute(aLong);
         Log.i(TAG, "onPostExecute");
+        nodelist = doc.getElementsByTagName("Quizz");
         for (int temp = 0; temp < nodelist.getLength(); temp++) {
             Node nNode = nodelist.item(temp);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-
-                //System.out.println(getNode("Quizz", eElement));
+                Element e = (Element) nodelist.item(temp);
+                db.insertCategorie(e.getAttribute("type"));
+                System.out.println(e.getAttribute("type"));
                 //System.out.println(eElement.getAttribute("type"));
-                System.out.println(getNode("Question", eElement));
+                //System.out.println(getNode("Question", eElement));
             }
         }
         pdialog.dismiss();
     }
 
-    private static String getNode(String sTag, Element eElement) {
-        NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
-        Node nValue = (Node) nlList.item(0);
-        return nValue.getNodeValue();
+    public String getValue(Element item, String str) {
+        NodeList n = item.getElementsByTagName(str);
+        return this.getElementValue(n.item(0));
     }
 
-    private final String getTextNodeValue(Node node) {
+    public final String getElementValue( Node elem ) {
         Node child;
-        if (node != null) {
-            if (node.hasChildNodes()) {
-                child = node.getFirstChild();
-                while(child != null) {
-                    if (child.getNodeType() == Node.TEXT_NODE) {
+        if( elem != null){
+            if (elem.hasChildNodes()){
+                for( child = elem.getFirstChild(); child != null; child = child.getNextSibling() ){
+                    if( child.getNodeType() == Node.TEXT_NODE  ){
                         return child.getNodeValue();
                     }
-                    child = child.getNextSibling();
                 }
             }
         }
