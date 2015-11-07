@@ -16,6 +16,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import ufr.m1.quizz.Adapter.GridReponseAdapter;
 import ufr.m1.quizz.SQLite.Database;
@@ -29,6 +30,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
 
     private Database myDb;
     private ArrayList<QuestionItem> listeQuestions;
+    private ArrayList<ReponseItem> listeReponse;
     private String reponseCourante = "";
 
     private Bundle extras;
@@ -65,7 +67,10 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         btn_suivant = (Button)findViewById(R.id.btn_question_suivante);
         gv_reponse = (GridView)findViewById(R.id.gv_affiche_reponse);
 
-        adapter = new GridReponseAdapter(this, listeQuestions.get(compteurQuestion).getListReponse());
+        listeReponse = listeQuestions.get(compteurQuestion).getListReponse();
+        Collections.shuffle(listeReponse);
+
+        adapter = new GridReponseAdapter(this, listeReponse);
         gv_reponse.setAdapter(adapter);
 
         //TODO
@@ -86,6 +91,10 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
             compteurQuestion = 0;
         }
         tvQuestion.setText(listeQuestions.get(compteurQuestion).getQuestion());
+        listeReponse = listeQuestions.get(compteurQuestion).getListReponse();
+        Collections.shuffle(listeReponse);
+        adapter = new GridReponseAdapter(this, listeReponse);
+        gv_reponse.setAdapter(adapter);
     }
 
 
