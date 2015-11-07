@@ -28,8 +28,13 @@
         <activity
             android:name=".AjoutActivity"
             android:label="@string/title_activity_ajout"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".QuizzActivity"
+            android:label="@string/title_activity_quizz"
+            android:theme="@style/AppTheme" >
         </activity>
     </application>
 

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -51,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ListeSujetAdapter(listeSujets,this);
         lvSujet.setAdapter(adapter);
+
+        lvSujet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(MainActivity.this, QuizzActivity.class);
+                i.putExtra("idsujet", listeSujets.get(position).getId());
+                i.putExtra("sujet", listeSujets.get(position).getSujet());
+                startActivity(i);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

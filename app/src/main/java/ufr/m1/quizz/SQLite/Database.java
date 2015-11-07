@@ -181,6 +181,24 @@ public class Database extends SQLiteOpenHelper {
     public void updateQuestionReponse(int idQuestion, Integer idBonneReponse) {
         ContentValues values = new ContentValues();
         values.put("bonneReponse", idBonneReponse);
-        db.update("Question",values,"id =? ", new String[]{String.valueOf(idQuestion)});
+        db.update("Question", values, "id =? ", new String[]{String.valueOf(idQuestion)});
+    }
+
+    public void getListeQuestionsBySujet(ArrayList<QuestionItem> listeQuestions, int idSujet) {
+        this.db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM Question WHERE sujet = "+idSujet, null);
+        if (c.moveToFirst()){
+            while (!c.isAfterLast()) {
+                String question = c.getString(1) ;
+                int id = c.getInt(0);
+                int bonneReponse = c.getInt(2);
+                int sujet = c.getInt(3);
+                ArrayList<ReponseItem> listReponse = new ArrayList<>();
+                getListeReponse(listReponse, id);
+                listeQuestions.add(new QuestionItem(id, sujet,bonneReponse, question, listReponse));
+                c.moveToNext();
+            }
+            c.close();
+        }
     }
 }

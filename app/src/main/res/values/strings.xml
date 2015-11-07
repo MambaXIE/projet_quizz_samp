@@ -9,6 +9,12 @@
     <string name="action_gestion">Gestion</string>
     <string name="title_activity_gestion">GestionActivity</string>
     <string name="title_activity_ajout">AjoutActivity</string>
+    <string name="title_activity_quizz">QuizzActivity</string>
+
+
+    <string name="btn_suivante">Suivante</string>
+    <string name="btn_reponse">Réponse</string>
+
 
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
     <string name="supprimer">Supprimer</string>
@@ -24,4 +30,6 @@
     <string name="str_red">#FF4444</string>
     <string name="str_yellow">#FFBB33</string>
     <string name="str_sky_blue">#33B5E5</string>
+
+
 </resources>

@@ -57,38 +57,59 @@ public class QuestionFragment extends Fragment {
         adapter = new ListeQuestionAdapter( getContext(),arrayQuestion);
         listeQuestion.setAdapter(adapter);
 
-        ListViewSwipeGesture touchListener = new ListViewSwipeGesture(listeQuestion , swipeListener, getActivity());
-        touchListener.SwipeType = ListViewSwipeGesture.Double;
+        ListViewSwipeGesture touchListener = new ListViewSwipeGesture(listeQuestion, swipeListener, getActivity());
+        touchListener.SwipeType	=	ListViewSwipeGesture.Double;    //Set two options at background of list item
 
+        //iniialisation des bouton en background de listView
+        //Premier bouton
+        touchListener.HalfColor = getResources().getString(R.string.supprimer_color);
+        touchListener.HalfText = getResources().getString(R.string.supprimer);
+        touchListener.HalfDrawable = getResources().getDrawable(R.drawable.ic_trash);
+
+        //deuxieme bouton
+        touchListener.FullColor = getResources().getString(R.string.editer_color);
+        touchListener.FullText = getResources().getString(R.string.editer);
+        touchListener.FullDrawable = getResources().getDrawable(R.drawable.ic_edit);
+
+        listeQuestion.setOnTouchListener(touchListener);
 
         return view;
     }
 
     ListViewSwipeGesture.TouchCallbacks swipeListener = new ListViewSwipeGesture.TouchCallbacks() {
+
         @Override
         public void FullSwipeListView(int position) {
-            Toast.makeText(getContext(), "Modifier", Toast.LENGTH_SHORT).show();
+            // TODO Auto-generated method stub
+            Toast.makeText(getContext(), "Action_2", Toast.LENGTH_SHORT).show();
         }
 
+        //appeler pour delete un sujet
         @Override
         public void HalfSwipeListView(int position) {
             Toast.makeText(getContext(),"Delete", Toast.LENGTH_SHORT).show();
-        }
 
-        @Override
-        public void OnClickListView(int position) {
-            Toast.makeText(getContext(),"Click", Toast.LENGTH_SHORT).show();
+
         }
 
         @Override
         public void LoadDataForScroll(int count) {
+            // TODO Auto-generated method stub
 
         }
 
         @Override
         public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-
+            // TODO Auto-generated method stub
+            Toast.makeText(getContext(),"Delete", Toast.LENGTH_SHORT).show();
         }
+
+        @Override
+        public void OnClickListView(int position) {
+            // TODO Auto-generated method stub
+            //startActivity(new Intent(getContext(),MainActivity.class));
+        }
+
     };
 
 }

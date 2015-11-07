@@ -81,11 +81,16 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
                         question = parser.getText();
                         idQuestion = db.insertQuestion(idSujet, question);
                     }else if (tag.equalsIgnoreCase("Proposition")){
-                        reponsesQuestion.add(db.insertReponse(parser.getText(), idQuestion));
+                        String reponse = (parser.getText().replaceAll("\t", ""));
+                        reponse = reponse.replaceAll("\n", "");
+                        if (!reponse.isEmpty()) {
+                            reponsesQuestion.add(db.insertReponse(reponse, idQuestion));
+                            System.out.println("insert " + reponse + ";");
+                        }
                     }/*else if (tag.equalsIgnoreCase("Reponse")){
                         db.updateQuestionReponse(idQuestion, reponsesQuestion.get(Integer.parseInt(parser.getAttributeValue(0))-1));
                     }*/
-                    System.out.println(parser.getText());
+                    System.out.println(parser.getText().replaceAll("\t", ""));
                 } else if (eventType == XmlPullParser.END_TAG) {
                     if (parser.getName().equalsIgnoreCase("Question")){
                         idQuestion = 0;
