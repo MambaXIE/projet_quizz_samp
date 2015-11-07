@@ -1,12 +1,10 @@
-/*
- *
- *  * Copyright (c) 2015. Petetin Cédric.
- *  * Master 1 - SAMP
- *  * Quizz/Questionnaires avec Android
- *
- */
-
 package ufr.m1.quizz.GestionFragment;
+
+/*
+ * Copyright (c) 2015. Petetin Cédric.
+ * Master 1 - SAMP
+ * Quizz/Questionnaires avec Android
+ */
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -108,10 +106,6 @@ public class SujetFragment extends Fragment {
         public void onDismiss(ListView listView, int[] reverseSortedPositions) {
             // TODO Auto-generated method stub
             Toast.makeText(getContext(),"Delete", Toast.LENGTH_SHORT).show();
-            for(int i:reverseSortedPositions){
-                arraySujets.remove(i);
-                adapter.notifyDataSetChanged();
-            }
         }
 
         @Override

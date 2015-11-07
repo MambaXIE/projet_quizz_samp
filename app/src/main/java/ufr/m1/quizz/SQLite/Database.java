@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import ufr.m1.quizz.Stockage.QuestionItem;
+import ufr.m1.quizz.Stockage.ReponseItem;
 import ufr.m1.quizz.Stockage.SujetItem;
 import ufr.m1.quizz.parser.AddQuestionnaire;
 
@@ -122,5 +124,39 @@ public class Database extends SQLiteOpenHelper {
 
     public void deleteCategorie(int id) {
         db.delete("Sujet", "id  =?", new String[]{""+id});
+    }
+
+
+    public void getListeQuestions(ArrayList<QuestionItem> arrayQuestion) {
+        this.db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM Question", null);
+        if (c.moveToFirst()){
+            while (!c.isAfterLast()) {
+                String question = c.getString(1) ;
+                int id = c.getInt(0);
+                int bonneReponse = c.getInt(3);
+                int sujet = c.getInt(4);
+                ArrayList<ReponseItem> listReponse = new ArrayList<>();
+                getListeReponse(listReponse, id);
+                arrayQuestion.add(new QuestionItem(id, sujet,bonneReponse, question, listReponse));
+                c.moveToNext();
+            }
+            c.close();
+        }
+    }
+
+    public void getListeReponse(ArrayList<ReponseItem> listReponse, int questionId){
+        this.db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM Reponse WHERE question = "+questionId, null);
+        if (c.moveToFirst()){
+            while (!c.isAfterLast()) {
+                int id = c.getInt(0);
+                String reponse = c.getString(1);
+                int question = c.getInt(2);
+                listReponse.add(new ReponseItem(id, reponse, question));
+                c.moveToNext();
+            }
+            c.close();
+        }
     }
 }
