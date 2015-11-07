@@ -110,6 +110,7 @@ public class Database extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put("nom", type);
             int id = (int) db.insert("Sujet", null, values);
+            return id;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -134,8 +135,8 @@ public class Database extends SQLiteOpenHelper {
             while (!c.isAfterLast()) {
                 String question = c.getString(1) ;
                 int id = c.getInt(0);
-                int bonneReponse = c.getInt(3);
-                int sujet = c.getInt(4);
+                int bonneReponse = c.getInt(2);
+                int sujet = c.getInt(3);
                 ArrayList<ReponseItem> listReponse = new ArrayList<>();
                 getListeReponse(listReponse, id);
                 arrayQuestion.add(new QuestionItem(id, sujet,bonneReponse, question, listReponse));
@@ -158,5 +159,28 @@ public class Database extends SQLiteOpenHelper {
             }
             c.close();
         }
+    }
+
+
+    public int insertQuestion(int idSujet, String question) {
+        ContentValues values = new ContentValues();
+        values.put("question", question);
+        values.put("sujet", idSujet);
+        int id = (int) db.insert("Question", null, values);
+        return id;
+    }
+
+    public Integer insertReponse(String text, int idQuestion) {
+        ContentValues values = new ContentValues();
+        values.put("reponse", text);
+        values.put("question", idQuestion);
+        int id = (int) db.insert("Reponse", null, values);
+        return id;
+    }
+
+    public void updateQuestionReponse(int idQuestion, Integer idBonneReponse) {
+        ContentValues values = new ContentValues();
+        values.put("bonneReponse", idBonneReponse);
+        db.update("Question",values,"id =? ", new String[]{String.valueOf(idQuestion)});
     }
 }

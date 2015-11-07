@@ -16,6 +16,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 import ufr.m1.quizz.SQLite.Database;
 
@@ -53,20 +54,46 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
             XmlPullParser parser = factory.newPullParser();
             parser.setInput(url.openStream(), "utf-8");
 
-
+            int idSujet = 0;
+            int idQuestion = 0;
+            String positionBonneReponse = "";
+            String tag = "";
+            String question = "";
+            ArrayList<Integer> reponsesQuestion = new ArrayList<>();
             int eventType = parser.getEventType();
 
             while(eventType != XmlPullParser.END_DOCUMENT) {
 
                 if(eventType == XmlPullParser.START_TAG) {
-                    System.out.println(parser.getName());
-                    if (parser.getName().equalsIgnoreCase("Quizz")){
+                    tag = parser.getName();
+                    System.out.println(tag);
+                    if (tag.equalsIgnoreCase("Quizz")){
                         System.out.println("Type "+parser.getAttributeValue(0));
-                        db.insertCategorie(parser.getAttributeValue(0));
+                        idSujet = db.insertCategorie(parser.getAttributeValue(0));
+                    }else if (tag.equalsIgnoreCase("Reponse")){
+                        System.out.println("reponse "+parser.getAttributeValue(0));
+                        positionBonneReponse = parser.getAttributeValue(0);
+                        db.updateQuestionReponse(idQuestion, reponsesQuestion.get(Integer.parseInt(positionBonneReponse)-1));
                     }
+
                 } else if (eventType == XmlPullParser.TEXT) {
+                    if (tag.equalsIgnoreCase("Question")){
+                        question = parser.getText();
+                        idQuestion = db.insertQuestion(idSujet, question);
+                    }else if (tag.equalsIgnoreCase("Proposition")){
+                        reponsesQuestion.add(db.insertReponse(parser.getText(), idQuestion));
+                    }/*else if (tag.equalsIgnoreCase("Reponse")){
+                        db.updateQuestionReponse(idQuestion, reponsesQuestion.get(Integer.parseInt(parser.getAttributeValue(0))-1));
+                    }*/
                     System.out.println(parser.getText());
                 } else if (eventType == XmlPullParser.END_TAG) {
+                    if (parser.getName().equalsIgnoreCase("Question")){
+                        idQuestion = 0;
+                        reponsesQuestion.clear();
+                        positionBonneReponse = "";
+                    }else if (parser.getName().equalsIgnoreCase("Quizz")){
+                        idSujet = 0;
+                    }
                     System.out.println(parser.getName());
                 }
                 eventType = parser.next();
