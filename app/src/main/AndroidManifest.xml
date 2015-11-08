@@ -36,6 +36,11 @@
             android:label="@string/title_activity_quizz"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".ReponseActivity"
+            android:label="@string/title_activity_reponse"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

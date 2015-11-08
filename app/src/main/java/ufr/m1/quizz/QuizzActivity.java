@@ -6,6 +6,7 @@ package ufr.m1.quizz;
  * Quizz/Questionnaires avec Android
  */
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +31,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
 
 
     private static final String TAG = "QUIZZ";
+    private static final int REPONSE_REQUEST = 11;
 
     private Database myDb;
     private ArrayList<QuestionItem> listeQuestions;
@@ -39,6 +41,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     private Bundle extras;
     private int idSujet;
     private int compteurQuestion = 0;
+    private Boolean reponseVue = false;
 
     private TextView tvQuestion;
     private Button btn_suivant;
@@ -85,6 +88,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         }
 
         btn_suivant.setOnClickListener(this);
+        btn_reponse.setOnClickListener(this);
         gv_reponse.setOnItemClickListener(this);
 
 
@@ -95,6 +99,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         if (listeQuestions.size()<=compteurQuestion){
             compteurQuestion = 0;
         }
+        reponseVue = false;
         tvQuestion.setText(listeQuestions.get(compteurQuestion).getQuestion());
         listeReponse = listeQuestions.get(compteurQuestion).getListReponse();
         Collections.shuffle(listeReponse);
@@ -110,12 +115,12 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
                 compteurQuestion++;
                 actualiseQuestion();
                 break;
-            /*case R.id.Vreponse:
+            case R.id.btn_voir_reponse:
                 //Aller voir la reponse
                 Intent goToReponse = new Intent(this, ReponseActivity.class);
-                goToReponse.putExtra("reponse", reponseCourante);
+                goToReponse.putExtra("reponse", listeQuestions.get(compteurQuestion).getBonneReponseString());
                 startActivityForResult(goToReponse, REPONSE_REQUEST);
-                break;*/
+                break;
         }
     }
 
@@ -136,8 +141,16 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
                 actualiseQuestion();
             }
         }, 3000);
-        //btn_Cliquer.postDelayed(clickButton, 100000);
-        //actualiseQuestion();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i(TAG, "onActivityResult");
+        if (requestCode == REPONSE_REQUEST && resultCode == RESULT_OK){
+            Log.i(TAG, "récupération variable acti 2");
+            reponseVue = data.getBooleanExtra("data", false);//recuperation du booleen permettant de savoir si la reponse a ete vu ou non
+        }
     }
 
     @Override

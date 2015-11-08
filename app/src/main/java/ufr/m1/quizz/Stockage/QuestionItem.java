@@ -63,4 +63,15 @@ public class QuestionItem {
     public void setListReponse(ArrayList<ReponseItem> listReponse) {
         this.listReponse = listReponse;
     }
+
+
+    public String getBonneReponseString() {
+
+        for (int i = 0; i < listReponse.size(); i++){
+            if (listReponse.get(i).getId() == bonneReponseId-1){
+                return listReponse.get(i).getReponse();
+            }
+        }
+        return "";
+    }
 }
