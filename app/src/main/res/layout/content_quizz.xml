@@ -29,10 +29,9 @@
 
     <GridView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:id="@+id/gv_affiche_reponse"
         android:layout_above="@+id/linearLayout_btn_quizzactivity"
-        android:layout_below="@+id/tv_affiche_question"
         android:layout_margin="5dp"
         android:columnWidth="250dp"
         android:drawSelectorOnTop="true"

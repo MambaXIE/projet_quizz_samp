@@ -6,11 +6,14 @@ package ufr.m1.quizz;
  * Quizz/Questionnaires avec Android
  */
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -23,7 +26,7 @@ import ufr.m1.quizz.SQLite.Database;
 import ufr.m1.quizz.Stockage.QuestionItem;
 import ufr.m1.quizz.Stockage.ReponseItem;
 
-public class QuizzActivity extends AppCompatActivity implements View.OnClickListener{
+public class QuizzActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
 
 
     private static final String TAG = "QUIZZ";
@@ -73,6 +76,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         adapter = new GridReponseAdapter(this, listeReponse);
         gv_reponse.setAdapter(adapter);
 
+
         //TODO
         ArrayList<ReponseItem> tets = listeQuestions.get(compteurQuestion).getListReponse();
         System.out.println(tets.size());
@@ -81,6 +85,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         }
 
         btn_suivant.setOnClickListener(this);
+        gv_reponse.setOnItemClickListener(this);
 
 
         actualiseQuestion();
@@ -115,6 +120,27 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i(TAG, "onItemClick");
+
+        Button btn_Cliquer = (Button)view.findViewById(R.id.btn_reponse_in_gv);
+        if (listeQuestions.get(compteurQuestion).getBonneReponseId() == listeReponse.get(position).getId()){
+            btn_Cliquer.setBackgroundColor(Color.RED);
+        }else{
+            btn_Cliquer.setBackgroundColor(Color.GREEN);
+        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                compteurQuestion++;
+                actualiseQuestion();
+            }
+        }, 3000);
+        //btn_Cliquer.postDelayed(clickButton, 100000);
+        //actualiseQuestion();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         Log.i(TAG, "onStart");
@@ -143,4 +169,6 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         super.onDestroy();
         Log.i(TAG, "onDestroy");
     }
+
+
 }

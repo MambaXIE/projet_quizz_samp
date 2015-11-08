@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:clickable="false"
+        android:focusable="false"/>
 
 </LinearLayout>
