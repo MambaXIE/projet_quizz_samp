@@ -29,7 +29,9 @@
 
 
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
+    <string name="btn_ajout_question">Ajouter une catégorie</string>
     <string name="btn_import_questionnaire">Importé le questionnaire</string>
+    <string name="btn_ajout">Ajouté</string>
     <string name="supprimer">Supprimer</string>
     <string name="editer">Editer</string>
     <string name="supprimer_color">#c62828</string>
@@ -44,6 +46,7 @@
     <string name="str_yellow">#FFBB33</string>
     <string name="str_sky_blue">#33B5E5</string>
     <string name="title_activity_reponse">ReponseActivity</string>
+    <string name="title_activity_ajout_question">AjoutQuestionActivity</string>
 
 
 </resources>

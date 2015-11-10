@@ -88,9 +88,7 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
                             reponsesQuestion.add(db.insertReponse(reponse, idQuestion));
                             System.out.println("insert " + reponse + ";");
                         }
-                    }/*else if (tag.equalsIgnoreCase("Reponse")){
-                        db.updateQuestionReponse(idQuestion, reponsesQuestion.get(Integer.parseInt(parser.getAttributeValue(0))-1));
-                    }*/
+                    }
                     System.out.println(parser.getText().replaceAll("\t", ""));
                 } else if (eventType == XmlPullParser.END_TAG) {
                     if (parser.getName().equalsIgnoreCase("Question")){

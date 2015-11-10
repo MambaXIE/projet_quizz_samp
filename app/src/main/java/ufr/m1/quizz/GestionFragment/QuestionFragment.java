@@ -7,6 +7,7 @@ package ufr.m1.quizz.GestionFragment;
  */
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import ufr.m1.quizz.Adapter.ListeQuestionAdapter;
+import ufr.m1.quizz.AjoutQuestionActivity;
 import ufr.m1.quizz.ListViewSwipeGesture.ListViewSwipeGesture;
 import ufr.m1.quizz.R;
 import ufr.m1.quizz.SQLite.Database;
@@ -72,6 +74,15 @@ public class QuestionFragment extends Fragment {
         touchListener.FullDrawable = getResources().getDrawable(R.drawable.ic_edit);
 
         listeQuestion.setOnTouchListener(touchListener);
+
+        ajoutQuestion = (Button)view.findViewById(R.id.btn_ajout_question);
+        ajoutQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), AjoutQuestionActivity.class);
+                startActivity(i);
+            }
+        });
 
         return view;
     }

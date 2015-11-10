@@ -11,7 +11,16 @@
     android:layout_height="match_parent"
     tools:context="ufr.m1.quizz.GestionFragment.QuestionFragment">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="@string/btn_ajout_question"
+        android:layout_margin="@dimen/fab_margin"
+        android:id="@+id/btn_ajout_question"/>
+
     <ListView
+        android:layout_below="@+id/btn_ajout_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
