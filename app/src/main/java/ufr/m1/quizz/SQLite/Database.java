@@ -49,7 +49,7 @@ public class Database extends SQLiteOpenHelper {
         Log.i(TAG, "onCreate bbbbb");
         this.db = database;
         executeSQLScript("bdd.sql");
-        new AddQuestionnaire(context, this).execute("http://raphaello.univ-fcomte.fr/m1/Quizzs.xml");
+        new AddQuestionnaire(context, this).execute("https://dept-info.univ-fcomte.fr/joomla/images/CR0700/Quizzs.xml");
     }
 
 
@@ -200,5 +200,9 @@ public class Database extends SQLiteOpenHelper {
             }
             c.close();
         }
+    }
+
+    public void deleteQuestion(int id) {
+        db.delete("Question", "id  =?", new String[]{""+id});
     }
 }

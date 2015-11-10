@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_gestion) {
-            Intent i = new Intent(MainActivity.this, GestionActivity.class);
+            Intent i = new Intent(MainActivity.this, AjoutActivity.class);
             startActivity(i);
             return true;
         }
@@ -104,8 +104,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
+        listeSujets.clear();
+        myDb.getListeSujets(listeSujets);
+        adapter.notifyDataSetChanged();
         Log.i(TAG, "onResume");
     }
 

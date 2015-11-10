@@ -6,6 +6,8 @@ package ufr.m1.quizz;
  * Quizz/Questionnaires avec Android
  */
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -42,6 +44,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     private int idSujet;
     private int compteurQuestion = 0;
     private Boolean reponseVue = false;
+    private int cptPoints = 0;
 
     private TextView tvQuestion;
     private Button btn_suivant;
@@ -67,36 +70,42 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         listeQuestions = new ArrayList<>();
         myDb.getListeQuestionsBySujet(listeQuestions, idSujet);
 
-        //initialisation des element du layout
-        tvQuestion = (TextView)findViewById(R.id.tv_affiche_question);
-        btn_reponse = (Button)findViewById(R.id.btn_voir_reponse);
-        btn_suivant = (Button)findViewById(R.id.btn_question_suivante);
-        gv_reponse = (GridView)findViewById(R.id.gv_affiche_reponse);
+        if (listeQuestions.isEmpty()){
+            finish();
+        }else {
 
-        listeReponse = listeQuestions.get(compteurQuestion).getListReponse();
-        Collections.shuffle(listeReponse);
+            //initialisation des element du layout
+            tvQuestion = (TextView) findViewById(R.id.tv_affiche_question);
+            btn_reponse = (Button) findViewById(R.id.btn_voir_reponse);
+            btn_suivant = (Button) findViewById(R.id.btn_question_suivante);
+            gv_reponse = (GridView) findViewById(R.id.gv_affiche_reponse);
 
-        adapter = new GridReponseAdapter(this, listeReponse);
-        gv_reponse.setAdapter(adapter);
+            listeReponse = listeQuestions.get(compteurQuestion).getListReponse();
+            Collections.shuffle(listeReponse);
+            adapter = new GridReponseAdapter(this, listeReponse);
+            gv_reponse.setAdapter(adapter);
 
 
-        //TODO
-        ArrayList<ReponseItem> tets = listeQuestions.get(compteurQuestion).getListReponse();
-        System.out.println(tets.size());
-        for (int i = 0; i < tets.size(); i++){
-            System.out.println(tets.get(i).getReponse());
+            //TODO
+            ArrayList<ReponseItem> tets = listeQuestions.get(compteurQuestion).getListReponse();
+            System.out.println(tets.size());
+            for (int i = 0; i < tets.size(); i++) {
+                System.out.println(tets.get(i).getReponse());
+            }
+
+            btn_suivant.setOnClickListener(this);
+            btn_reponse.setOnClickListener(this);
+            gv_reponse.setOnItemClickListener(this);
+
+
+            actualiseQuestion();
         }
-
-        btn_suivant.setOnClickListener(this);
-        btn_reponse.setOnClickListener(this);
-        gv_reponse.setOnItemClickListener(this);
-
-
-        actualiseQuestion();
     }
 
     private void actualiseQuestion(){
         if (listeQuestions.size()<=compteurQuestion){
+            showScore();
+            //finish();
             compteurQuestion = 0;
         }
         reponseVue = false;
@@ -107,6 +116,18 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         gv_reponse.setAdapter(adapter);
     }
 
+    public void showScore() {
+
+        new AlertDialog.Builder(QuizzActivity.this)
+                .setTitle(getResources().getString(R.string.alertdialog_score_titre))
+                .setMessage(cptPoints+"/"+listeQuestions.size())
+                .setPositiveButton(getResources().getString(R.string.btn_ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                        dialog.cancel();
+                    }
+                }).show();
+    }
 
     @Override
     public void onClick(View v) {
@@ -129,10 +150,13 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         Log.i(TAG, "onItemClick");
 
         Button btn_Cliquer = (Button)view.findViewById(R.id.btn_reponse_in_gv);
-        if (listeQuestions.get(compteurQuestion).getBonneReponseId() == listeReponse.get(position).getId()){
-            btn_Cliquer.setBackgroundColor(Color.RED);
-        }else{
+        if (listeQuestions.get(compteurQuestion).getBonneReponseId() == listeReponse.get(position).getId() && !reponseVue){
             btn_Cliquer.setBackgroundColor(Color.GREEN);
+            cptPoints++;
+        }else if(listeQuestions.get(compteurQuestion).getBonneReponseId() == listeReponse.get(position).getId() && reponseVue) {
+            btn_Cliquer.setBackgroundColor(Color.YELLOW);
+        }else{
+            btn_Cliquer.setBackgroundColor(Color.RED);
         }
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

@@ -87,9 +87,8 @@ public class QuestionFragment extends Fragment {
         //appeler pour delete un sujet
         @Override
         public void HalfSwipeListView(int position) {
-            Toast.makeText(getContext(),"Delete", Toast.LENGTH_SHORT).show();
-
-
+            myDb.deleteQuestion(arrayQuestion.get(position).getId());
+            Toast.makeText(getContext(),getResources().getString(R.string.toast_message_suppression), Toast.LENGTH_SHORT).show();
         }
 
         @Override

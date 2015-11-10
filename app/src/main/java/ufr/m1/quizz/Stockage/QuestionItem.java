@@ -68,7 +68,7 @@ public class QuestionItem {
     public String getBonneReponseString() {
 
         for (int i = 0; i < listReponse.size(); i++){
-            if (listReponse.get(i).getId() == bonneReponseId-1){
+            if (listReponse.get(i).getId() == bonneReponseId){
                 return listReponse.get(i).getReponse();
             }
         }

@@ -21,11 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GestionActivity"
-            android:label="@string/title_activity_gestion"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
             android:name=".AjoutActivity"
             android:label="@string/title_activity_ajout"
             android:parentActivityName=".MainActivity"

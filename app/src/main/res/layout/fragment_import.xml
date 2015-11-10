@@ -6,13 +6,28 @@
   ~  */
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ufr.m1.quizz.GestionFragment.ImportFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/app_name" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/edt_importfr_saisieurl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/fab_margin"
+        android:hint="url..."
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="@string/btn_import_questionnaire"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_below="@+id/edt_importfr_saisieurl"
+        android:id="@+id/btn_import_questionnaire"
+        android:textAllCaps="false"/>
+
+</RelativeLayout>

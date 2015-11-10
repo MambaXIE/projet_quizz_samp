@@ -17,9 +17,19 @@
 
     <string name="verification">Etes-vous sur de vouloir le faire ?</string>
     <string name="voirReponse">Montrez la réponse !</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_annul">Annuler</string>
+    <string name="alertdialog_score_titre">Votre Score</string>
+    <string name="alertdialog_erreur_titre">Erreur !</string>
+    <string name="alertdialog_erreur_message">Url invalide</string>
+    <string name="toast_message_suppression">Element supprimer</string>
+
+    <string name="alertdialog_addsujet_titre">Ajouter une Catégorie</string>
+    <string name="alertdialog_addsujet_message">Saisir le nom de la catégorie</string>
 
 
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
+    <string name="btn_import_questionnaire">Importé le questionnaire</string>
     <string name="supprimer">Supprimer</string>
     <string name="editer">Editer</string>
     <string name="supprimer_color">#c62828</string>

@@ -18,6 +18,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.net.URL;
 import java.util.ArrayList;
 
+import ufr.m1.quizz.MainActivity;
 import ufr.m1.quizz.SQLite.Database;
 
 public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
@@ -116,6 +117,11 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
     protected void onPostExecute(Long aLong){
         super.onPostExecute(aLong);
         Log.i(TAG, "onPostExecute");
+
+        if(context instanceof MainActivity){
+            ((MainActivity)context).onResume();
+        }
+
         pdialog.dismiss();
     }
 }
