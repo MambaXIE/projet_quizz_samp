@@ -23,13 +23,12 @@
     <string name="alertdialog_erreur_titre">Erreur !</string>
     <string name="alertdialog_erreur_message">Url invalide</string>
     <string name="toast_message_suppression">Element supprimer</string>
-
     <string name="alertdialog_addsujet_titre">Ajouter une Catégorie</string>
     <string name="alertdialog_addsujet_message">Saisir le nom de la catégorie</string>
 
 
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
-    <string name="btn_ajout_question">Ajouter une catégorie</string>
+    <string name="btn_ajout_question">Ajouter une question</string>
     <string name="btn_import_questionnaire">Importé le questionnaire</string>
     <string name="btn_ajout">Ajouté</string>
     <string name="supprimer">Supprimer</string>

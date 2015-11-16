@@ -31,4 +31,9 @@ public class SujetItem {
     public void setSujet(String sujet) {
         this.sujet = sujet;
     }
+
+    @Override
+    public String toString() {
+        return sujet;
+    }
 }

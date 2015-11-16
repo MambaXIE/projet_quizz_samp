@@ -17,6 +17,7 @@
         android:background="@color/colorAccent"
         android:text="@string/btn_ajout_question"
         android:layout_margin="@dimen/fab_margin"
+        android:textAllCaps="false"
         android:id="@+id/btn_ajout_question"/>
 
     <ListView
