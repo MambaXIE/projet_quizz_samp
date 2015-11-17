@@ -31,6 +31,7 @@
     <string name="btn_ajout_question">Ajouter une question</string>
     <string name="btn_import_questionnaire">Importé le questionnaire</string>
     <string name="btn_ajout">Ajouté</string>
+    <string name="textview_ajoute_reponse">Ajouter une réponse</string>
     <string name="supprimer">Supprimer</string>
     <string name="editer">Editer</string>
     <string name="supprimer_color">#c62828</string>

@@ -74,8 +74,11 @@ public class ListeSaisieReponseAdapter extends BaseAdapter{
         }
 
         holder.ref = position;
-
-        holder.textView1.setText("Reponse "+(position+1)+ ":");
+        if (position == 0){
+            holder.textView1.setText("Bonne reponse:");
+        }else {
+            holder.textView1.setText("Reponse " + (position + 1) + ":");
+        }
         holder.editText1.setText(reponses.get(position));
         holder.editText1.addTextChangedListener(new TextWatcher() {
 
@@ -95,11 +98,9 @@ public class ListeSaisieReponseAdapter extends BaseAdapter{
             @Override
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
-                reponses.set(position, arg0.toString());
-                //((AjoutQuestionActivity)context).ajoutReponse();
+                reponses.set(holder.ref, arg0.toString());
+                System.out.println(reponses.get(holder.ref));
             }
-
-
         });
 
         return convertView;
