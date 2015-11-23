@@ -7,21 +7,22 @@ package ufr.m1.quizz.GestionFragment;
  */
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ufr.m1.quizz.Adapter.ListeQuestionAdapter;
 import ufr.m1.quizz.AjoutQuestionActivity;
-import ufr.m1.quizz.ListViewSwipeGesture.ListViewSwipeGesture;
 import ufr.m1.quizz.R;
 import ufr.m1.quizz.SQLite.Database;
 import ufr.m1.quizz.Stockage.QuestionItem;
@@ -59,22 +60,6 @@ public class QuestionFragment extends Fragment {
         adapter = new ListeQuestionAdapter( getContext(),arrayQuestion);
         listeQuestion.setAdapter(adapter);
 
-        ListViewSwipeGesture touchListener = new ListViewSwipeGesture(listeQuestion, swipeListener, getActivity());
-        touchListener.SwipeType	=	ListViewSwipeGesture.Double;    //Set two options at background of list item
-
-        //iniialisation des bouton en background de listView
-        //Premier bouton
-        touchListener.HalfColor = getResources().getString(R.string.supprimer_color);
-        touchListener.HalfText = getResources().getString(R.string.supprimer);
-        touchListener.HalfDrawable = getResources().getDrawable(R.drawable.ic_trash);
-
-        //deuxieme bouton
-        touchListener.FullColor = getResources().getString(R.string.editer_color);
-        touchListener.FullText = getResources().getString(R.string.editer);
-        touchListener.FullDrawable = getResources().getDrawable(R.drawable.ic_edit);
-
-        listeQuestion.setOnTouchListener(touchListener);
-
         ajoutQuestion = (Button)view.findViewById(R.id.btn_ajout_question);
         ajoutQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,42 +69,40 @@ public class QuestionFragment extends Fragment {
             }
         });
 
+        listeQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                itemClicked(position);
+            }
+        });
+
         return view;
     }
 
-    ListViewSwipeGesture.TouchCallbacks swipeListener = new ListViewSwipeGesture.TouchCallbacks() {
+    private void itemClicked(final int position){
+        AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setMessage(getResources().getString(R.string.alertdialog_deletesujet_message))
+                .setTitle(getResources().getString(R.string.alertdialog_deletesujet_titre))
 
-        @Override
-        public void FullSwipeListView(int position) {
-            // TODO Auto-generated method stub
-            Toast.makeText(getContext(), "Action_2", Toast.LENGTH_SHORT).show();
-        }
+                        // Boutons de l'alert dialog
+                .setPositiveButton(getString(R.string.supprimer), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        myDb.deleteQuestion(arrayQuestion.get(position).getId());
+                        arrayQuestion.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                })
 
-        //appeler pour delete un sujet
-        @Override
-        public void HalfSwipeListView(int position) {
-            myDb.deleteQuestion(arrayQuestion.get(position).getId());
-            Toast.makeText(getContext(),getResources().getString(R.string.toast_message_suppression), Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void LoadDataForScroll(int count) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-            // TODO Auto-generated method stub
-            Toast.makeText(getContext(),"Delete", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void OnClickListView(int position) {
-            // TODO Auto-generated method stub
-            //startActivity(new Intent(getContext(),MainActivity.class));
-        }
-
-    };
+                .setNegativeButton(getResources().getString(R.string.btn_annul), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // fermeture de l'alert dialog
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        dialog.show();
+    }
 
 }

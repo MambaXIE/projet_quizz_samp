@@ -25,7 +25,8 @@
     <string name="toast_message_suppression">Element supprimer</string>
     <string name="alertdialog_addsujet_titre">Ajouter une Catégorie</string>
     <string name="alertdialog_addsujet_message">Saisir le nom de la catégorie</string>
-
+    <string name="alertdialog_deletesujet_message">Choisir une action</string>
+    <string name="alertdialog_deletesujet_titre">Modification des catégories</string>
 
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
     <string name="btn_ajout_question">Ajouter une question</string>
@@ -34,17 +35,9 @@
     <string name="textview_ajoute_reponse">Ajouter une réponse</string>
     <string name="supprimer">Supprimer</string>
     <string name="editer">Editer</string>
-    <string name="supprimer_color">#c62828</string>
-    <string name="editer_color">#42a5f5</string>
 
-    <string name="basic_action_1">Action_1</string>
-    <string name="basic_action_2">Action_2</string>
-    <string name="basic_del">Delete</string>
-    <string name="str_orange">#fe7b27</string>
-    <string name="str_green">#3cac69</string>
-    <string name="str_red">#FF4444</string>
-    <string name="str_yellow">#FFBB33</string>
-    <string name="str_sky_blue">#33B5E5</string>
+
+
     <string name="title_activity_reponse">ReponseActivity</string>
     <string name="title_activity_ajout_question">AjoutQuestionActivity</string>
 

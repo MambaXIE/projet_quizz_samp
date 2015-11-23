@@ -125,6 +125,7 @@ public class Database extends SQLiteOpenHelper {
 
     public void deleteCategorie(int id) {
         db.delete("Sujet", "id  =?", new String[]{""+id});
+        Log.i(TAG,"Suppression du sujet");
     }
 
 
