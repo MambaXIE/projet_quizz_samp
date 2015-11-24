@@ -126,7 +126,9 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
                         finish();
                         dialog.cancel();
                     }
-                }).show();
+                })
+                .setCancelable(false)
+                .show();
     }
 
     @Override

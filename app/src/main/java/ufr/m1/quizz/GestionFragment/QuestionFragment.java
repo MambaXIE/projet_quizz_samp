@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,8 @@ public class QuestionFragment extends Fragment {
     private ArrayList<QuestionItem> arrayQuestion;
     private ListeQuestionAdapter adapter;
 
+    private View view;
+
     public QuestionFragment() {
         // Required empty public constructor
     }
@@ -48,7 +51,7 @@ public class QuestionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_question, container, false);
+        view = inflater.inflate(R.layout.fragment_question, container, false);
 
         myDb = new Database(getContext());
 
@@ -91,6 +94,7 @@ public class QuestionFragment extends Fragment {
                         myDb.deleteQuestion(arrayQuestion.get(position).getId());
                         arrayQuestion.remove(position);
                         adapter.notifyDataSetChanged();
+                        Snackbar.make(view, getString(R.string.toast_message_suppression), Snackbar.LENGTH_LONG).show();
                     }
                 })
 

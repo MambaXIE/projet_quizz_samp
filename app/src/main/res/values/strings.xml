@@ -23,6 +23,7 @@
     <string name="alertdialog_erreur_titre">Erreur !</string>
     <string name="alertdialog_erreur_message">Url invalide</string>
     <string name="toast_message_suppression">Element supprimer</string>
+    <string name="toast_message_modification">Modification effectué</string>
     <string name="alertdialog_addsujet_titre">Ajouter une Catégorie</string>
     <string name="alertdialog_addsujet_message">Saisir le nom de la catégorie</string>
     <string name="alertdialog_deletesujet_message">Choisir une action</string>
@@ -32,6 +33,7 @@
     <string name="btn_ajout_question">Ajouter une question</string>
     <string name="btn_import_questionnaire">Importé le questionnaire</string>
     <string name="btn_ajout">Ajouté</string>
+    <string name="btn_valide">Validé</string>
     <string name="textview_ajoute_reponse">Ajouter une réponse</string>
     <string name="supprimer">Supprimer</string>
     <string name="editer">Editer</string>
@@ -40,6 +42,7 @@
 
     <string name="title_activity_reponse">ReponseActivity</string>
     <string name="title_activity_ajout_question">AjoutQuestionActivity</string>
+    <string name="title_activity_modif_sujet">Modification Catégorie</string>
 
 
 </resources>

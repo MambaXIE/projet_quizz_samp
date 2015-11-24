@@ -41,6 +41,11 @@
             android:label="@string/title_activity_ajout_question"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".ModifSujetActivity"
+            android:label="@string/title_activity_modif_sujet"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

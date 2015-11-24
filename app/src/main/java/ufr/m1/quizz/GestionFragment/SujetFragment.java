@@ -8,7 +8,9 @@ package ufr.m1.quizz.GestionFragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import ufr.m1.quizz.Adapter.ListeSujetAdapter;
+import ufr.m1.quizz.ModifSujetActivity;
 import ufr.m1.quizz.R;
 import ufr.m1.quizz.SQLite.Database;
 import ufr.m1.quizz.Stockage.SujetItem;
@@ -35,6 +38,8 @@ public class SujetFragment extends Fragment {
 
     private ArrayList<SujetItem> arraySujets;
     private ListeSujetAdapter adapter;
+
+    private View view;
 
 
     public SujetFragment() {
@@ -50,7 +55,7 @@ public class SujetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sujet, container, false);
+        view = inflater.inflate(R.layout.fragment_sujet, container, false);
 
         myDb = new Database(getContext());
 
@@ -100,18 +105,28 @@ public class SujetFragment extends Fragment {
                         myDb.deleteCategorie(arraySujets.get(position).getId());
                         arraySujets.remove(position);
                         adapter.notifyDataSetChanged();
+                        Snackbar.make(view, getString(R.string.toast_message_suppression), Snackbar.LENGTH_LONG).show();
                     }
                 })
 
-                .setNegativeButton(getResources().getString(R.string.btn_annul), new DialogInterface.OnClickListener() {
+                .setNegativeButton("Modifier", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(getContext(), ModifSujetActivity.class);
+                        i.putExtra("idSujet",arraySujets.get(position).getId());
+                        i.putExtra("nomSujet",arraySujets.get(position).getSujet());
+                        startActivity(i);
+                    }
+                })
+
+                .setNeutralButton(getResources().getString(R.string.btn_annul), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // fermeture de l'alert dialog
                         dialog.dismiss();
                     }
                 })
-                .create();
-        dialog.show();
+                .show();
     }
 
     private void ajouteSujet() {
@@ -159,7 +174,12 @@ public class SujetFragment extends Fragment {
         dialog.show();
     }
 
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        arraySujets.clear();
+        myDb.getListeSujets(arraySujets);
+        adapter.notifyDataSetChanged();
+    }
 }
 

@@ -206,4 +206,10 @@ public class Database extends SQLiteOpenHelper {
     public void deleteQuestion(int id) {
         db.delete("Question", "id  =?", new String[]{""+id});
     }
+
+    public void updateCategorieName(int idSujet, String s) {
+        ContentValues values = new ContentValues();
+        values.put("nom", s);
+        db.update("Sujet", values, "id =? ", new String[]{String.valueOf(idSujet)});
+    }
 }
