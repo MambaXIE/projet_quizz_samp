@@ -39,6 +39,7 @@
         <activity
             android:name=".AjoutQuestionActivity"
             android:label="@string/title_activity_ajout_question"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme" >
         </activity>
         <activity

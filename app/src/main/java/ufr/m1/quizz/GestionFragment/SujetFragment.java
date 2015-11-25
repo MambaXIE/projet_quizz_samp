@@ -109,7 +109,7 @@ public class SujetFragment extends Fragment {
                     }
                 })
 
-                .setNegativeButton("Modifier", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.editer), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent(getContext(), ModifSujetActivity.class);

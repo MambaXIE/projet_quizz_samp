@@ -12,8 +12,6 @@ package ufr.m1.quizz.Adapter;
 
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +51,7 @@ public class ListeSaisieReponseAdapter extends BaseAdapter{
         return position;
     }
 
-    @Override
+    /*@Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         //ViewHolder holder = null;
@@ -104,6 +102,47 @@ public class ListeSaisieReponseAdapter extends BaseAdapter{
         });
 
         return convertView;
+    }*/
+
+    @Override
+
+    public View getView(int position, View view, ViewGroup parent) {
+
+        ViewHolder viewHolder;
+        if (view == null) {
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.lv_editetext_reponse, null, true);
+            viewHolder.textView1 = (TextView) view.findViewById(R.id.Item_name);
+            viewHolder.editText1 = (EditText) view.findViewById(R.id.Item_price);
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
+// loadSavedValues();
+        }
+        viewHolder.textView1.setText(reponses.get(position));
+        viewHolder.editText1.setId(position);
+        viewHolder.ref = position;
+        /*if (selItems != null && selItems.get(position) != null) {
+            viewHolder.itmPrice.setText(selItems.get(position));
+        } else {
+            viewHolder.itmPrice.setText(null);
+        }*/
+
+// Add listener for edit text
+        viewHolder.editText1
+                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (!hasFocus) {
+                            int itemIndex = v.getId();
+                            String enteredPrice = ((EditText) v).getText()
+                                    .toString();
+                            reponses.set(itemIndex, enteredPrice);
+                        }
+                    }
+                });
+        return view;
     }
 
     private class ViewHolder {

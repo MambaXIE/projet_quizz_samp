@@ -69,6 +69,9 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
         spin_listSujet.setAdapter(adapter);
 
         reponses = new ArrayList<>();
+        reponses.add("");
+        reponses.add("");
+        reponses.add("");
         lvSaisieAdapter = new ListeSaisieReponseAdapter(reponses, this);
         lv_reponsesSaisie.setAdapter(lvSaisieAdapter);
 
