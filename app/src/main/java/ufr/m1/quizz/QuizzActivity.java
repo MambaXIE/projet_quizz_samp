@@ -114,6 +114,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         Collections.shuffle(listeReponse);
         adapter = new GridReponseAdapter(this, listeReponse);
         gv_reponse.setAdapter(adapter);
+        gv_reponse.setOnItemClickListener(this);
     }
 
     public void showScore() {
@@ -150,7 +151,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.i(TAG, "onItemClick");
-
+        gv_reponse.setOnItemClickListener(null);
         Button btn_Cliquer = (Button)view.findViewById(R.id.btn_reponse_in_gv);
         if (listeQuestions.get(compteurQuestion).getBonneReponseId() == listeReponse.get(position).getId() && !reponseVue){
             btn_Cliquer.setBackgroundColor(Color.GREEN);

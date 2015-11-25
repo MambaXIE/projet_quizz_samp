@@ -11,6 +11,7 @@
 package ufr.m1.quizz;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -41,6 +42,7 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
 
     private Database mydb;
     private ArrayList<SujetItem> listeSujet;
+    private int idQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +71,6 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
         spin_listSujet.setAdapter(adapter);
 
         reponses = new ArrayList<>();
-        reponses.add("");
-        reponses.add("");
         reponses.add("");
         lvSaisieAdapter = new ListeSaisieReponseAdapter(reponses, this);
         lv_reponsesSaisie.setAdapter(lvSaisieAdapter);
@@ -105,6 +105,21 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
                 ajoutReponse();
                 break;
             case R.id.btn_ajoute:
+                String question = questionSaisie.getText().toString();
+                int idSujet = listeSujet.get((int) spin_listSujet.getSelectedItemId()).getId();
+                System.out.println("item select " + listeSujet.get((int) spin_listSujet.getSelectedItemId()).getId());
+                idQuestion = mydb.insertQuestion(idSujet, question);
+                for (int i = 0; i<reponses.size(); i++){
+                    int idResponse =  mydb.insertReponse(reponses.get(i), idQuestion);
+                    if (i == 0){
+                        mydb.updateQuestionReponse(idQuestion, idResponse);
+                    }
+                }
+                Snackbar.make(v, getString(R.string.toast_message_ajout), Snackbar.LENGTH_LONG).show();
+                questionSaisie.setText("");
+                reponses.clear();
+                reponses.add("");
+                lvSaisieAdapter.notifyDataSetChanged();
                 break;
         }
     }

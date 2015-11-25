@@ -24,6 +24,7 @@
     <string name="alertdialog_erreur_message">Url invalide</string>
     <string name="toast_message_suppression">Element supprimer</string>
     <string name="toast_message_modification">Modification effectué</string>
+    <string name="toast_message_ajout">Element ajouté</string>
     <string name="alertdialog_addsujet_titre">Ajouter une Catégorie</string>
     <string name="alertdialog_addsujet_message">Saisir le nom de la catégorie</string>
     <string name="alertdialog_deletesujet_message">Choisir une action</string>

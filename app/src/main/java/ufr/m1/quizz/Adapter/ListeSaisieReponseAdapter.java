@@ -12,6 +12,8 @@ package ufr.m1.quizz.Adapter;
 
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,34 +53,46 @@ public class ListeSaisieReponseAdapter extends BaseAdapter{
         return position;
     }
 
-    /*@Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
 
-        //ViewHolder holder = null;
-        final ViewHolder holder;
-        if (convertView == null) {
+    @Override
 
-            holder = new ViewHolder();
+    public View getView(int position, View view, ViewGroup parent) {
+
+        final ViewHolder viewHolder;
+        if (view == null) {
+            viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.lv_editetext_reponse, null);
-            holder.textView1 = (TextView) convertView.findViewById(R.id.textView1);
-            holder.editText1 = (EditText) convertView.findViewById(R.id.editText1);
-
-            convertView.setTag(holder);
-
+            view = inflater.inflate(R.layout.lv_editetext_reponse, null, true);
+            viewHolder.textView1 = (TextView) view.findViewById(R.id.text_view1);
+            viewHolder.editText1 = (EditText) view.findViewById(R.id.edit_text_1);
+            view.setTag(viewHolder);
         } else {
-
-            holder = (ViewHolder) convertView.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
-
-        holder.ref = position;
+        viewHolder.textView1.setText(reponses.get(position));
+        viewHolder.editText1.setId(position);
+        viewHolder.ref = position;
         if (position == 0){
-            holder.textView1.setText("Bonne reponse:");
+            viewHolder.textView1.setText("Bonne reponse:");
         }else {
-            holder.textView1.setText("Reponse " + (position + 1) + ":");
+            viewHolder.textView1.setText("Reponse " + (position + 1) + ":");
         }
-        holder.editText1.setText(reponses.get(position));
-        holder.editText1.addTextChangedListener(new TextWatcher() {
+
+        // Add listener for edit text
+        /*viewHolder.editText1
+                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (!hasFocus) {
+                            int itemIndex = v.getId();
+                            String enteredPrice = ((EditText) v).getText()
+                                    .toString();
+                            reponses.set(itemIndex, enteredPrice);
+                        }
+                    }
+                });*/
+
+        viewHolder.editText1.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
@@ -96,52 +110,10 @@ public class ListeSaisieReponseAdapter extends BaseAdapter{
             @Override
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
-                reponses.set(holder.ref, arg0.toString());
-                System.out.println(reponses.get(holder.ref));
+                reponses.set(viewHolder.ref, arg0.toString());
+                System.out.println(reponses.get(viewHolder.ref));
             }
         });
-
-        return convertView;
-    }*/
-
-    @Override
-
-    public View getView(int position, View view, ViewGroup parent) {
-
-        ViewHolder viewHolder;
-        if (view == null) {
-            viewHolder = new ViewHolder();
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.lv_editetext_reponse, null, true);
-            viewHolder.textView1 = (TextView) view.findViewById(R.id.Item_name);
-            viewHolder.editText1 = (EditText) view.findViewById(R.id.Item_price);
-            view.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) view.getTag();
-// loadSavedValues();
-        }
-        viewHolder.textView1.setText(reponses.get(position));
-        viewHolder.editText1.setId(position);
-        viewHolder.ref = position;
-        /*if (selItems != null && selItems.get(position) != null) {
-            viewHolder.itmPrice.setText(selItems.get(position));
-        } else {
-            viewHolder.itmPrice.setText(null);
-        }*/
-
-// Add listener for edit text
-        viewHolder.editText1
-                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-                        if (!hasFocus) {
-                            int itemIndex = v.getId();
-                            String enteredPrice = ((EditText) v).getText()
-                                    .toString();
-                            reponses.set(itemIndex, enteredPrice);
-                        }
-                    }
-                });
         return view;
     }
 
