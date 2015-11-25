@@ -5,7 +5,7 @@
   -->
 
 <resources>
-    <string name="app_name">Quizz</string>
+    <string name="app_name">Quiz!</string>
     <string name="action_gestion">Gestion</string>
     <string name="title_activity_gestion">GestionActivity</string>
     <string name="title_activity_ajout">AjoutActivity</string>

@@ -40,8 +40,6 @@ public class Database extends SQLiteOpenHelper {
         // Store the context for later use
         this.context = context;
         Log.i(TAG, "Constructor");
-        //TODO
-        //new AddQuestionnaire(context, this).execute("http://raphaello.univ-fcomte.fr/m1/Quizzs.xml");
     }
 
     @Override
@@ -107,19 +105,19 @@ public class Database extends SQLiteOpenHelper {
 
     public int insertCategorie(String type) {
         try {
-            ContentValues values = new ContentValues();
-            values.put("nom", type);
-            int id = (int) db.insert("Sujet", null, values);
-            return id;
+            this.db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT id FROM Sujet WHERE nom = '" + type +"'", null);
+            if (c.moveToFirst()){
+                return c.getInt(0);
+            }else {
+                ContentValues values = new ContentValues();
+                values.put("nom", type);
+                int id = (int) db.insert("Sujet", null, values);
+                return id;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
-        //db.rawQuery("INSERT INTO Sujet (nom) VALUES ('"+type+"')",null);
-        /*if (id >1){
-            Log.i(TAG, "Insertion de Sujet réussi");
-        }else{
-            Log.e(TAG, "erreur lors de l'insertion d'une question");
-        }*/
         return 1;
     }
 
@@ -164,19 +162,31 @@ public class Database extends SQLiteOpenHelper {
 
 
     public int insertQuestion(int idSujet, String question) {
-        ContentValues values = new ContentValues();
-        values.put("question", question);
-        values.put("sujet", idSujet);
-        int id = (int) db.insert("Question", null, values);
-        return id;
+        this.db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT id FROM Question WHERE question = '" + question.replaceAll("'"," ") +"' AND sujet = "+ idSujet, null);
+        if (c.moveToFirst()){
+            return c.getInt(0);
+        }else {
+            ContentValues values = new ContentValues();
+            values.put("question", question);
+            values.put("sujet", idSujet);
+            int id = (int) db.insert("Question", null, values);
+            return id;
+        }
     }
 
     public Integer insertReponse(String text, int idQuestion) {
-        ContentValues values = new ContentValues();
-        values.put("reponse", text);
-        values.put("question", idQuestion);
-        int id = (int) db.insert("Reponse", null, values);
-        return id;
+        this.db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT id FROM Reponse WHERE reponse = '" + text.replaceAll("'"," ") + "' AND question = " + idQuestion, null);
+        if (c.moveToFirst()){
+            return c.getInt(0);
+        }else {
+            ContentValues values = new ContentValues();
+            values.put("reponse", text);
+            values.put("question", idQuestion);
+            int id = (int) db.insert("Reponse", null, values);
+            return id;
+        }
     }
 
     public void updateQuestionReponse(int idQuestion, Integer idBonneReponse) {
@@ -204,12 +214,36 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public void deleteQuestion(int id) {
-        db.delete("Question", "id  =?", new String[]{""+id});
+        db.delete("Question", "id  =?", new String[]{"" + id});
     }
 
     public void updateCategorieName(int idSujet, String s) {
         ContentValues values = new ContentValues();
         values.put("nom", s);
         db.update("Sujet", values, "id =? ", new String[]{String.valueOf(idSujet)});
+    }
+
+    public QuestionItem getQuestionById(int idQuestion) {
+        this.db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM Question WHERE id = "+idQuestion, null);
+        if (c.moveToFirst()){
+            while (!c.isAfterLast()) {
+                String question = c.getString(1) ;
+                int id = c.getInt(0);
+                int bonneReponse = c.getInt(2);
+                int sujet = c.getInt(3);
+                ArrayList<ReponseItem> listReponse = new ArrayList<>();
+                getListeReponse(listReponse, id);
+                return new QuestionItem(id, sujet,bonneReponse, question, listReponse);
+            }
+            c.close();
+        }
+        return null;
+    }
+
+    public void updateQuestion(String question, int idQuestion) {
+        ContentValues values = new ContentValues();
+        values.put("question", question);
+        db.update("Question", values, "id =? ", new String[]{String.valueOf(idQuestion)});
     }
 }

@@ -74,4 +74,12 @@ public class QuestionItem {
         }
         return "";
     }
+
+    public ArrayList<String> getListReponseToString() {
+        ArrayList<String> listReponseToString = new ArrayList<>();
+        for (int i = 0; i<listReponse.size(); i++){
+            listReponseToString.add(listReponse.get(i).getReponse());
+        }
+        return listReponseToString;
+    }
 }

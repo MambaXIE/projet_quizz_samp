@@ -97,6 +97,14 @@ public class QuestionFragment extends Fragment {
                         Snackbar.make(view, getString(R.string.toast_message_suppression), Snackbar.LENGTH_LONG).show();
                     }
                 })
+                .setNeutralButton(getString(R.string.editer), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(getContext(), AjoutQuestionActivity.class);
+                        i.putExtra("idQuestion", arrayQuestion.get(position).getId());
+                        startActivity(i);
+                    }
+                })
 
                 .setNegativeButton(getResources().getString(R.string.btn_annul), new DialogInterface.OnClickListener() {
                     @Override
@@ -109,4 +117,11 @@ public class QuestionFragment extends Fragment {
         dialog.show();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        arrayQuestion.clear();
+        myDb.getListeQuestions(arrayQuestion);
+        adapter.notifyDataSetChanged();
+    }
 }

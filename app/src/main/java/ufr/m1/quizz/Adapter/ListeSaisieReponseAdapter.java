@@ -69,28 +69,15 @@ public class ListeSaisieReponseAdapter extends BaseAdapter{
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.textView1.setText(reponses.get(position));
         viewHolder.editText1.setId(position);
+
         viewHolder.ref = position;
+        viewHolder.editText1.setText(reponses.get(viewHolder.ref));
         if (position == 0){
             viewHolder.textView1.setText("Bonne reponse:");
         }else {
             viewHolder.textView1.setText("Reponse " + (position + 1) + ":");
         }
-
-        // Add listener for edit text
-        /*viewHolder.editText1
-                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-                        if (!hasFocus) {
-                            int itemIndex = v.getId();
-                            String enteredPrice = ((EditText) v).getText()
-                                    .toString();
-                            reponses.set(itemIndex, enteredPrice);
-                        }
-                    }
-                });*/
 
         viewHolder.editText1.addTextChangedListener(new TextWatcher() {
 
