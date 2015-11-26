@@ -57,7 +57,15 @@ public class QuestionItem {
     }
 
     public ArrayList<ReponseItem> getListReponse() {
-        return listReponse;
+        ArrayList<ReponseItem> arrayReponse = new ArrayList<>();
+        for (int i = 0; i<listReponse.size(); i++){
+            if (listReponse.get(i).getId() == bonneReponseId){
+                arrayReponse.add(0,listReponse.get(i));
+            }else {
+                arrayReponse.add(listReponse.get(i));
+            }
+        }
+        return arrayReponse;
     }
 
     public void setListReponse(ArrayList<ReponseItem> listReponse) {
@@ -78,7 +86,11 @@ public class QuestionItem {
     public ArrayList<String> getListReponseToString() {
         ArrayList<String> listReponseToString = new ArrayList<>();
         for (int i = 0; i<listReponse.size(); i++){
-            listReponseToString.add(listReponse.get(i).getReponse());
+            if (listReponse.get(i).getId() == bonneReponseId){
+                listReponseToString.add(0,listReponse.get(i).getReponse());
+            }else {
+                listReponseToString.add(listReponse.get(i).getReponse());
+            }
         }
         return listReponseToString;
     }

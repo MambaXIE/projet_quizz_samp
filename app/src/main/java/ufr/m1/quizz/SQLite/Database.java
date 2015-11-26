@@ -241,9 +241,16 @@ public class Database extends SQLiteOpenHelper {
         return null;
     }
 
-    public void updateQuestion(String question, int idQuestion) {
+    public void updateQuestion(String question, int idSujet, int idQuestion) {
         ContentValues values = new ContentValues();
         values.put("question", question);
+        values.put("sujet", idSujet);
         db.update("Question", values, "id =? ", new String[]{String.valueOf(idQuestion)});
+    }
+
+    public void updateReponse(String s, int id) {
+        ContentValues values = new ContentValues();
+        values.put("reponse", s);
+        db.update("Reponse", values, "id =? ", new String[]{String.valueOf(id)});
     }
 }

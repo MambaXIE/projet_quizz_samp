@@ -45,6 +45,7 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
     private Database mydb;
     private ArrayList<SujetItem> listeSujet;
     private int idQuestion = 0;
+    private QuestionItem questionCourante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +79,15 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
         reponses = new ArrayList<>();
         if (i.hasExtra("idQuestion")){
             idQuestion = i.getIntExtra("idQuestion", 0);
-            QuestionItem questionCourante = mydb.getQuestionById(idQuestion);
+            questionCourante = mydb.getQuestionById(idQuestion);
             questionSaisie.setText(questionCourante.getQuestion());
             reponses = questionCourante.getListReponseToString();
+            for (int j = 0; j<listeSujet.size(); j++){
+                if (listeSujet.get(j).getId() == questionCourante.getSujet()){
+                    spin_listSujet.setSelection(j);
+                }
+            }
+
         }else{
             reponses.add("");
         }
@@ -101,7 +108,6 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
         lvSaisieAdapter.notifyDataSetChanged();
     }
 
-    private void ajouteQuestion(){}
 
     @Override
     public void onClick(View v) {
@@ -122,7 +128,15 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
 
     public void updateQuestion(View v){
         String question = questionSaisie.getText().toString();
-        mydb.updateQuestion(question, idQuestion);
+        int idSujet = listeSujet.get((int) spin_listSujet.getSelectedItemId()).getId();
+        mydb.updateQuestion(question, idSujet, idQuestion);
+        for (int i = 0; i<reponses.size(); i++){
+            if (i<questionCourante.getListReponse().size()) {
+                mydb.updateReponse(reponses.get(i), questionCourante.getListReponse().get(i).getId());
+            }else{
+                mydb.insertReponse(reponses.get(i), idQuestion);
+            }
+        }
         Snackbar.make(v, getString(R.string.toast_message_modification), Snackbar.LENGTH_LONG).show();
     }
 

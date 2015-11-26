@@ -33,7 +33,7 @@
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
     <string name="btn_ajout_question">Ajouter une question</string>
     <string name="btn_import_questionnaire">Importé le questionnaire</string>
-    <string name="btn_ajout">Ajouté</string>
+    <string name="btn_ajout">Enregistré</string>
     <string name="btn_valide">Validé</string>
     <string name="textview_ajoute_reponse">Ajouter une réponse</string>
     <string name="supprimer">Supprimer</string>
