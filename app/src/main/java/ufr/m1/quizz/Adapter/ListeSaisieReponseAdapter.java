@@ -74,9 +74,9 @@ public class ListeSaisieReponseAdapter extends BaseAdapter{
         viewHolder.ref = position;
         viewHolder.editText1.setText(reponses.get(viewHolder.ref));
         if (position == 0){
-            viewHolder.textView1.setText("Bonne reponse:");
+            viewHolder.textView1.setText("Bonne réponse:");
         }else {
-            viewHolder.textView1.setText("Reponse " + (position + 1) + ":");
+            viewHolder.textView1.setText("Réponse " + (position + 1) + ":");
         }
 
         viewHolder.editText1.addTextChangedListener(new TextWatcher() {

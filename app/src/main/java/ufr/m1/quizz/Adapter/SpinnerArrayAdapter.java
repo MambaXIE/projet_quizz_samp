@@ -46,8 +46,6 @@ public class SpinnerArrayAdapter extends ArrayAdapter<SujetItem> {
 
         SujetItem item = getItem(position);
         if (item!= null) {
-            // My layout has only one TextView
-            // do whatever you want with your string and long
             viewHolder.itemView.setText(item.getSujet());
         }
 

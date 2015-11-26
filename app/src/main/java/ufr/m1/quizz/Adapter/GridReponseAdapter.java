@@ -50,7 +50,7 @@ public class GridReponseAdapter extends BaseAdapter{
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            //chargelent du layout d'un element du la listView
+            //chargement du layout d'un element du la listView
             convertView = inflater.inflate(R.layout.gv_reponse_btn, null);
             holder = new ViewHolder();
 

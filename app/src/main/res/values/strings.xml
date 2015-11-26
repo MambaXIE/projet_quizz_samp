@@ -5,34 +5,34 @@
   -->
 
 <resources>
+
     <string name="app_name">Quiz!</string>
     <string name="action_gestion">Gestion</string>
-    <string name="title_activity_gestion">GestionActivity</string>
-    <string name="title_activity_ajout">AjoutActivity</string>
-    <string name="title_activity_quizz">QuizzActivity</string>
-
+    <string name="title_activity_gestion">Gestion</string>
+    <string name="title_activity_ajout">Gestion</string>
+    <string name="title_activity_quizz">Quizz</string>
 
     <string name="btn_suivante">Suivante</string>
     <string name="btn_reponse">Réponse</string>
 
-    <string name="verification">Etes-vous sur de vouloir le faire ?</string>
+    <string name="verification">Etes-vous sûr de vouloir le faire ?</string>
     <string name="voirReponse">Montrez la réponse !</string>
     <string name="btn_ok">OK</string>
     <string name="btn_annul">Annuler</string>
     <string name="alertdialog_score_titre">Votre Score</string>
     <string name="alertdialog_erreur_titre">Erreur !</string>
-    <string name="alertdialog_erreur_message">Url invalide</string>
-    <string name="toast_message_suppression">Element supprimer</string>
+    <string name="alertdialog_erreur_message">URL invalide</string>
+    <string name="toast_message_suppression">Elément supprimé</string>
     <string name="toast_message_modification">Modification effectué</string>
     <string name="toast_message_ajout">Element ajouté</string>
-    <string name="alertdialog_addsujet_titre">Ajouter une Catégorie</string>
+    <string name="alertdialog_addsujet_titre">Ajouter une catégorie</string>
     <string name="alertdialog_addsujet_message">Saisir le nom de la catégorie</string>
     <string name="alertdialog_deletesujet_message">Choisir une action</string>
     <string name="alertdialog_deletesujet_titre">Modification des catégories</string>
 
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
     <string name="btn_ajout_question">Ajouter une question</string>
-    <string name="btn_import_questionnaire">Importé le questionnaire</string>
+    <string name="btn_import_questionnaire">Importer le questionnaire</string>
     <string name="btn_ajout">Enregistré</string>
     <string name="btn_valide">Validé</string>
     <string name="textview_ajoute_reponse">Ajouter une réponse</string>
@@ -41,9 +41,9 @@
 
 
 
-    <string name="title_activity_reponse">ReponseActivity</string>
-    <string name="title_activity_ajout_question">AjoutQuestionActivity</string>
-    <string name="title_activity_modif_sujet">Modification Catégorie</string>
+    <string name="title_activity_reponse">Réponse</string>
+    <string name="title_activity_ajout_question">Ajout de question</string>
+    <string name="title_activity_modif_sujet">Modification de catégorie</string>
 
 
 </resources>

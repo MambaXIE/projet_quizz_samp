@@ -51,7 +51,7 @@ public class ListeQuestionAdapter extends BaseAdapter {
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            //chargelent du layout d'un element du la listView
+            //chargement du layout d'un element du la listView
             convertView = inflater.inflate(R.layout.lv_question_item, null);
             holder = new ViewHolder();
 

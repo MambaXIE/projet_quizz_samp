@@ -57,7 +57,7 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
         Intent i = getIntent();
 
 
-        //garder le clavier fermer
+        //garder le clavier fermé
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         mydb = new Database(this);

@@ -104,7 +104,7 @@ public class AddQuestionnaire extends AsyncTask<String, Integer, Long>{
             }
             flag = true;
         } catch (Exception e) {
-            Log.e("Error", "probleme dans le chargement du fichier");
+            Log.e("Error", "problème dans le chargement du fichier");
             e.printStackTrace();
         }
         return null;

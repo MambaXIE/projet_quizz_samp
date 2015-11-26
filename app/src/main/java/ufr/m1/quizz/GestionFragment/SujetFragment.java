@@ -98,7 +98,7 @@ public class SujetFragment extends Fragment {
                 .setMessage(getResources().getString(R.string.alertdialog_deletesujet_message))
                 .setTitle(getResources().getString(R.string.alertdialog_deletesujet_titre))
 
-                        // Boutons de l'alert dialog
+                        // Boutons de l'alerte dialog
                 .setPositiveButton(getString(R.string.supprimer), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -122,7 +122,7 @@ public class SujetFragment extends Fragment {
                 .setNeutralButton(getResources().getString(R.string.btn_annul), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // fermeture de l'alert dialog
+                        // Fermeture de l'alert dialog
                         dialog.dismiss();
                     }
                 })
@@ -154,14 +154,14 @@ public class SujetFragment extends Fragment {
                 .setNegativeButton(getResources().getString(R.string.btn_annul), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // fermeture de l'alert dialog
+                        // Fermeture de l'alert dialog
                         dialog.dismiss();
                     }
                 })
                 .create();
 
-        // focus sur l'editText
-        // permet d'afficheir le clavier
+        // Focus sur l'editText
+        // Permet d'afficher le clavier
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

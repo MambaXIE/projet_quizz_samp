@@ -37,7 +37,6 @@ public class Database extends SQLiteOpenHelper {
 
     public Database(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        // Store the context for later use
         this.context = context;
         Log.i(TAG, "Constructor");
     }
@@ -57,8 +56,8 @@ public class Database extends SQLiteOpenHelper {
     }
 
     /**
-     * Fonction executant les requete sql contenu dans des fichiers
-     * @param       fileName        le liens vers le fichier contenant les requete
+     * Fonction exécutant les requêtes sql contenues dans des fichiers
+     * @param       fileName        le lien vers le fichier contenant les requêtes
      */
     public void executeSQLScript(String fileName) {
         Log.i(TAG, "executeSQLScript");

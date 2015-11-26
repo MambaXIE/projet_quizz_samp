@@ -109,7 +109,7 @@ public class QuestionFragment extends Fragment {
                 .setNegativeButton(getResources().getString(R.string.btn_annul), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // fermeture de l'alert dialog
+                        // Fermeture de l'alert dialog
                         dialog.dismiss();
                     }
                 })

@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        this.setTitle("Categories");
+        this.setTitle("Catégories");
 
         listeSujets = new ArrayList<>();
         myDb = new Database(this);
