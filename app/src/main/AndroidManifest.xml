@@ -3,6 +3,8 @@
     package="ufr.m1.quizz" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
 
     <application
         android:allowBackup="true"

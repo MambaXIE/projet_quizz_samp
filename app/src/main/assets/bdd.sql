@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS Question(
   `question` TEXT NOT NULL,
   `bonneReponse` INTEGER NULL,
   `sujet` INTEGER NULL,
+  `image` TEXT NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE IF NOT EXISTS Reponse(

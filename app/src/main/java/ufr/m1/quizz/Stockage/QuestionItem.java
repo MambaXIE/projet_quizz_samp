@@ -15,13 +15,15 @@ public class QuestionItem {
     private int bonneReponseId;
     private String question;
     private ArrayList<ReponseItem> listReponse;
+    private String image;
 
-    public QuestionItem(int id, int sujet, int bonneReponseId, String question, ArrayList<ReponseItem> listReponse) {
+    public QuestionItem(int id, int sujet, int bonneReponseId, String question, ArrayList<ReponseItem> listReponse, String image) {
         this.id = id;
         this.sujet = sujet;
         this.bonneReponseId = bonneReponseId;
         this.question = question;
         this.listReponse = listReponse;
+        this.image = image;
     }
 
     public int getId() {
@@ -93,5 +95,13 @@ public class QuestionItem {
             }
         }
         return listReponseToString;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

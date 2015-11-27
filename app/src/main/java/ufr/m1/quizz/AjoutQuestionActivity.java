@@ -13,6 +13,7 @@ package ufr.m1.quizz;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -43,6 +45,7 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
     private RelativeLayout rl_ajoute_question;
     private RelativeLayout rl_ajoute_image;
     private Button btn_ajouter;
+    private TextView tv_ajoute_image;
 
     private ListeSaisieReponseAdapter lvSaisieAdapter;
     private ArrayList<String> reponses;
@@ -51,6 +54,7 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
     private ArrayList<SujetItem> listeSujet;
     private int idQuestion = 0;
     private QuestionItem questionCourante;
+    private String image = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,7 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
         rl_ajoute_question = (RelativeLayout) findViewById(R.id.relativelayout_ajoute_reponse);
         rl_ajoute_image = (RelativeLayout) findViewById(R.id.relativelayout_ajoute_image);
         btn_ajouter = (Button)findViewById(R.id.btn_ajoute);
+        tv_ajoute_image = (TextView)findViewById(R.id.tv_ajoute_image);
 
         rl_ajoute_question.setOnClickListener(this);
         rl_ajoute_image.setOnClickListener(this);
@@ -169,6 +174,9 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
                 mydb.insertReponse(reponses.get(i), idQuestion);
             }
         }
+        if (!image.isEmpty()){
+            mydb.updateQuestionAddImage(image,idQuestion);
+        }
         Snackbar.make(v, getString(R.string.toast_message_modification), Snackbar.LENGTH_LONG).show();
     }
 
@@ -183,10 +191,23 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
                 mydb.updateQuestionReponse(idQuestion, idResponse);
             }
         }
+        if (!image.isEmpty()){
+            mydb.updateQuestionAddImage(image,idQuestion);
+        }
         Snackbar.make(v, getString(R.string.toast_message_ajout), Snackbar.LENGTH_LONG).show();
         questionSaisie.setText("");
         reponses.clear();
         reponses.add("");
         lvSaisieAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == SELECT_PHOTO){
+            Uri selectedImage = data.getData();
+            tv_ajoute_image.setText(selectedImage.getPath());
+            image = selectedImage.getPath();
+        }
+    }
+
 }

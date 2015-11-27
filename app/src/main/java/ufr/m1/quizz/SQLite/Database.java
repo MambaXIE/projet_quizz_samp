@@ -139,9 +139,10 @@ public class Database extends SQLiteOpenHelper {
                 int id = c.getInt(0);
                 int bonneReponse = c.getInt(2);
                 int sujet = c.getInt(3);
+                String image = c.getString(4);
                 ArrayList<ReponseItem> listReponse = new ArrayList<>();
                 getListeReponse(listReponse, id);
-                arrayQuestion.add(new QuestionItem(id, sujet,bonneReponse, question, listReponse));
+                arrayQuestion.add(new QuestionItem(id, sujet,bonneReponse, question, listReponse,image));
                 c.moveToNext();
             }
             c.close();
@@ -208,9 +209,10 @@ public class Database extends SQLiteOpenHelper {
                 int id = c.getInt(0);
                 int bonneReponse = c.getInt(2);
                 int sujet = c.getInt(3);
+                String image = c.getString(4);
                 ArrayList<ReponseItem> listReponse = new ArrayList<>();
                 getListeReponse(listReponse, id);
-                listeQuestions.add(new QuestionItem(id, sujet,bonneReponse, question, listReponse));
+                listeQuestions.add(new QuestionItem(id, sujet,bonneReponse, question, listReponse,image));
                 c.moveToNext();
             }
             c.close();
@@ -237,9 +239,10 @@ public class Database extends SQLiteOpenHelper {
                 int id = c.getInt(0);
                 int bonneReponse = c.getInt(2);
                 int sujet = c.getInt(3);
+                String image = c.getString(4);
                 ArrayList<ReponseItem> listReponse = new ArrayList<>();
                 getListeReponse(listReponse, id);
-                return new QuestionItem(id, sujet,bonneReponse, question, listReponse);
+                return new QuestionItem(id, sujet,bonneReponse, question, listReponse,image);
             }
             c.close();
         }
@@ -274,5 +277,11 @@ public class Database extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("score", cptPoints);
         db.update("Sujet", values, "id =? ", new String[]{String.valueOf(idSujet)});
+    }
+
+    public void updateQuestionAddImage(String s, int idQuestion) {
+        ContentValues values = new ContentValues();
+        values.put("image", s);
+        db.update("Question", values, "id =? ", new String[]{String.valueOf(idQuestion)});
     }
 }

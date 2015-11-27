@@ -80,6 +80,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/tv_ajoute_image"
             android:layout_toRightOf="@+id/temp_imageview2"
             android:text="@string/textview_ajoute_image"/>
 
