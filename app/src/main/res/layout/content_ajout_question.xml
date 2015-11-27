@@ -65,6 +65,26 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativelayout_ajoute_reponse"
+        android:id="@+id/relativelayout_ajoute_image">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@android:drawable/ic_input_add"
+            android:id="@+id/temp_imageview2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/temp_imageview2"
+            android:text="@string/textview_ajoute_image"/>
+
+    </RelativeLayout>
+
 
     <Button
         android:layout_width="match_parent"
@@ -74,7 +94,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:textAllCaps="false"
         android:id="@+id/btn_ajoute"
-        android:layout_below="@+id/relativelayout_ajoute_reponse"/>
+        android:layout_below="@+id/relativelayout_ajoute_image"/>
 
 
 

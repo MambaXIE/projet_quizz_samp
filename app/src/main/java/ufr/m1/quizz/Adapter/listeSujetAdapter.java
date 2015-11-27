@@ -60,6 +60,7 @@ public class ListeSujetAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             holder.reponse = (TextView) convertView.findViewById(R.id.lv_item_tv_sujet);
+            holder.score = (TextView) convertView.findViewById(R.id.li_item_tv_score);
 
             convertView.setTag(holder);
 
@@ -68,6 +69,7 @@ public class ListeSujetAdapter extends BaseAdapter {
         }
 
         holder.reponse.setText(listeSujet.get(position).getSujet());
+        holder.score.setText(listeSujet.get(position).getScoreString());
 
         return convertView;
     }
@@ -75,6 +77,7 @@ public class ListeSujetAdapter extends BaseAdapter {
 
     private class ViewHolder{
         TextView reponse;
+        TextView score;
     }
 
 }

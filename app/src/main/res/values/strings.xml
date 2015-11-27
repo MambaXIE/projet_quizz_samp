@@ -38,6 +38,7 @@
     <string name="btn_ajout">Enregistré</string>
     <string name="btn_valide">Validé</string>
     <string name="textview_ajoute_reponse">Ajouter une réponse</string>
+    <string name="textview_ajoute_image">Ajouter une image</string>
     <string name="supprimer">Supprimer</string>
     <string name="editer">Editer</string>
 

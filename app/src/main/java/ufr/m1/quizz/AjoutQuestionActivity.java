@@ -35,10 +35,13 @@ import ufr.m1.quizz.Stockage.SujetItem;
 
 public class AjoutQuestionActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final int SELECT_PHOTO = 100;
+
     private EditText questionSaisie;
     private Spinner spin_listSujet;
     private ListView lv_reponsesSaisie;
     private RelativeLayout rl_ajoute_question;
+    private RelativeLayout rl_ajoute_image;
     private Button btn_ajouter;
 
     private ListeSaisieReponseAdapter lvSaisieAdapter;
@@ -70,9 +73,11 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
         spin_listSujet = (Spinner)findViewById(R.id.spinner_liste_sujet);
         lv_reponsesSaisie = (ListView)findViewById(R.id.lv_saisie_reponse);
         rl_ajoute_question = (RelativeLayout) findViewById(R.id.relativelayout_ajoute_reponse);
+        rl_ajoute_image = (RelativeLayout) findViewById(R.id.relativelayout_ajoute_image);
         btn_ajouter = (Button)findViewById(R.id.btn_ajoute);
 
         rl_ajoute_question.setOnClickListener(this);
+        rl_ajoute_image.setOnClickListener(this);
         btn_ajouter.setOnClickListener(this);
 
         ArrayAdapter<SujetItem> adapter = new ArrayAdapter<SujetItem>(this, android.R.layout.simple_spinner_item,listeSujet);
@@ -130,7 +135,11 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
                         updateQuestion(v);
                     }
                 }
-
+                break;
+            case R.id.relativelayout_ajoute_image:
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, SELECT_PHOTO);
                 break;
         }
     }
