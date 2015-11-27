@@ -99,13 +99,12 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
 
 
     public void ajoutReponse(){
-        reponses = lvSaisieAdapter.getReponses();
 
         if (reponses.size()<4) {
             reponses.add("");
         }
-        System.out.println(reponses.get(0));
-        lvSaisieAdapter.notifyDataSetChanged();
+        lvSaisieAdapter = new ListeSaisieReponseAdapter(reponses, this);
+        lv_reponsesSaisie.setAdapter(lvSaisieAdapter);
     }
 
 

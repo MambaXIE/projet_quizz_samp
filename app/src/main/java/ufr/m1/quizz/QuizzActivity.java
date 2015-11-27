@@ -38,7 +38,6 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     private Database myDb;
     private ArrayList<QuestionItem> listeQuestions;
     private ArrayList<ReponseItem> listeReponse;
-    private String reponseCourante = "";
 
     private Bundle extras;
     private int idSujet;
@@ -130,6 +129,10 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
                 })
                 .setCancelable(false)
                 .show();
+
+        if (myDb.getScore(idSujet) < cptPoints){
+            myDb.updateScore(idSujet, cptPoints);
+        }
     }
 
     @Override

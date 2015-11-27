@@ -1,6 +1,8 @@
 CREATE TABLE IF NOT EXISTS Sujet (
   `id` INTEGER NOT NULL,
   `nom` TEXT NOT NULL,
+  `score` INTEGER NULL,
+  `taille` INTEGER NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE IF NOT EXISTS Question(

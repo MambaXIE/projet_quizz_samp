@@ -29,6 +29,7 @@
     <string name="alertdialog_addsujet_message">Saisir le nom de la catégorie</string>
     <string name="alertdialog_deletesujet_message">Choisir une action</string>
     <string name="alertdialog_deletesujet_titre">Modification des catégories</string>
+    <string name="alertdialog_deletequestion_titre">Modification de question</string>
 
     <string name="btn_ajout_sujet">Ajouter une catégorie</string>
     <string name="btn_ajout_question">Ajouter une question</string>

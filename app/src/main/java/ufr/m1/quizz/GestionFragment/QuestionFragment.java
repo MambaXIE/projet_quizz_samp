@@ -85,7 +85,7 @@ public class QuestionFragment extends Fragment {
     private void itemClicked(final int position){
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setMessage(getResources().getString(R.string.alertdialog_deletesujet_message))
-                .setTitle(getResources().getString(R.string.alertdialog_deletesujet_titre))
+                .setTitle(getResources().getString(R.string.alertdialog_deletequestion_titre))
 
                         // Boutons de l'alert dialog
                 .setPositiveButton(getString(R.string.supprimer), new DialogInterface.OnClickListener() {

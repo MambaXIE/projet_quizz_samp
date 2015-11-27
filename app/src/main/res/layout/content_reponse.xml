@@ -40,6 +40,8 @@
         android:id="@+id/montrerReponse"
         android:text="@string/voirReponse"
         android:layout_below="@+id/showReponse"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        />
 
 </RelativeLayout>

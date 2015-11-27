@@ -95,7 +95,9 @@ public class Database extends SQLiteOpenHelper {
             while (!c.isAfterLast()) {
                 String sujet = c.getString(1) ;
                 int id = c.getInt(0);
-                listeSujets.add(new SujetItem(id, sujet));
+                int score = c.getInt(2);
+                int taille = c.getInt(3);
+                listeSujets.add(new SujetItem(id, sujet, score, taille));
                 c.moveToNext();
             }
             c.close();
@@ -111,6 +113,8 @@ public class Database extends SQLiteOpenHelper {
             }else {
                 ContentValues values = new ContentValues();
                 values.put("nom", type);
+                values.put("score", 0);
+                values.put("taille", 0);
                 int id = (int) db.insert("Sujet", null, values);
                 return id;
             }
@@ -170,6 +174,7 @@ public class Database extends SQLiteOpenHelper {
             values.put("question", question);
             values.put("sujet", idSujet);
             int id = (int) db.insert("Question", null, values);
+            db.execSQL("UPDATE Sujet SET taille = taille + 1 WHERE id = " + idSujet);
             return id;
         }
     }
@@ -214,6 +219,7 @@ public class Database extends SQLiteOpenHelper {
 
     public void deleteQuestion(int id) {
         db.delete("Question", "id  =?", new String[]{"" + id});
+        db.rawQuery("UPDATE Sujet SET taille = taille - 1 WHERE id = (SELECT sujet FROM Question WHERE id = id)", null);
     }
 
     public void updateCategorieName(int idSujet, String s) {
@@ -251,5 +257,22 @@ public class Database extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("reponse", s);
         db.update("Reponse", values, "id =? ", new String[]{String.valueOf(id)});
+    }
+
+    public int getScore(int idSujet) {
+        int res = 0;
+        this.db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT score FROM Sujet WHERE id = "+idSujet, null);
+        if (c.moveToFirst()){
+            res = c.getInt(0);
+        }
+        c.close();
+        return res;
+    }
+
+    public void updateScore(int idSujet, int cptPoints) {
+        ContentValues values = new ContentValues();
+        values.put("score", cptPoints);
+        db.update("Sujet", values, "id =? ", new String[]{String.valueOf(idSujet)});
     }
 }

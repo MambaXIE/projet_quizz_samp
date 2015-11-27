@@ -7,14 +7,14 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:layout_height="match_parent" android:background="#EAEAEA">
+    <!--<LinearLayout
         android:id="@+id/list_display_view_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="visible"
-        android:background="#EAEAEA">
+        android:background="#EAEAEA">-->
 
 
     <TextView
@@ -30,7 +30,14 @@
         android:padding="15dp"
         android:paddingLeft="30dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="7pt"
+        android:padding="15dp"
+        android:textColor="@color/colorTextView"
+        android:layout_alignParentRight="true"
+        android:id="@+id/li_item_tv_score"/>
 
-    </LinearLayout>
 
 </RelativeLayout>
