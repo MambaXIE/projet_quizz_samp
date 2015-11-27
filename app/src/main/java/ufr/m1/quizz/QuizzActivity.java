@@ -170,7 +170,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
                 compteurQuestion++;
                 actualiseQuestion();
             }
-        }, 3000);
+        }, 10000);
 
     }
 

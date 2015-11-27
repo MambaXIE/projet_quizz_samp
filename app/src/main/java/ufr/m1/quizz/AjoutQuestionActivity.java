@@ -10,6 +10,8 @@
 
 package ufr.m1.quizz;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -116,13 +118,35 @@ public class AjoutQuestionActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.btn_ajoute:
                 if (idQuestion == 0){
-                    insertNewQuestion(v);
+                    if (questionSaisie.getText().toString().isEmpty()){
+                        AfficheErreur();
+                    }else {
+                        insertNewQuestion(v);
+                    }
                 }else{
-                    updateQuestion(v);
+                    if (questionSaisie.getText().toString().isEmpty()){
+                        AfficheErreur();
+                    }else {
+                        updateQuestion(v);
+                    }
                 }
 
                 break;
         }
+    }
+
+    private void AfficheErreur() {
+        AlertDialog.Builder erreur = new AlertDialog.Builder(this);
+        erreur.setTitle(getString(R.string.alertdialog_erreur_titre))
+                .setMessage(getString(R.string.alertdialog_erreur_message_nonsaisie))
+                .setNegativeButton(getString(R.string.btn_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create()
+                .show();
     }
 
     public void updateQuestion(View v){

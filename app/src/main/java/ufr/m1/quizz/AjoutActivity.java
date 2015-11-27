@@ -55,7 +55,7 @@ public class AjoutActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new SujetFragment(), "Catégories");
         adapter.addFragment(new QuestionFragment(), "Questions");
-        adapter.addFragment(new ImportFragment(), "Importé");
+        adapter.addFragment(new ImportFragment(), "Importer");
         viewPager.setAdapter(adapter);
     }
 

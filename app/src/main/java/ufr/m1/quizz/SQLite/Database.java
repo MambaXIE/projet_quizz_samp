@@ -219,7 +219,7 @@ public class Database extends SQLiteOpenHelper {
 
     public void deleteQuestion(int id) {
         db.delete("Question", "id  =?", new String[]{"" + id});
-        db.rawQuery("UPDATE Sujet SET taille = taille - 1 WHERE id = (SELECT sujet FROM Question WHERE id = id)", null);
+        db.execSQL("UPDATE Sujet SET taille = taille - 1 WHERE id = (SELECT sujet FROM Question WHERE id = id)");
     }
 
     public void updateCategorieName(int idSujet, String s) {

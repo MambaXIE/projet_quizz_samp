@@ -22,6 +22,7 @@
     <string name="alertdialog_score_titre">Votre Score</string>
     <string name="alertdialog_erreur_titre">Erreur !</string>
     <string name="alertdialog_erreur_message">URL invalide</string>
+    <string name="alertdialog_erreur_message_nonsaisie">Veillez saisir une question</string>
     <string name="toast_message_suppression">Elément supprimé</string>
     <string name="toast_message_modification">Modification effectué</string>
     <string name="toast_message_ajout">Element ajouté</string>
